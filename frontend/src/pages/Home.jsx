@@ -68,7 +68,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Thank you for your inquiry! We will contact you soon.');
+    alert(t.contact.form.successMessage);
     setFormData({ name: '', email: '', company: '', message: '' });
   };
 
@@ -79,11 +79,28 @@ const Home = () => {
   };
 
   const features = [
-    { icon: Brain, title: 'AI-Powered', desc: 'Cutting-edge intelligence' },
-    { icon: Rocket, title: 'Fast Results', desc: '6-12 months ROI' },
-    { icon: Shield, title: 'Enterprise Grade', desc: 'Bank-level security' },
-    { icon: Globe, title: 'Global Scale', desc: 'Worldwide deployment' }
+    { icon: Brain, title: t.hero.features.aiPowered.title, desc: t.hero.features.aiPowered.desc },
+    { icon: Rocket, title: t.hero.features.fastResults.title, desc: t.hero.features.fastResults.desc },
+    { icon: Shield, title: t.hero.features.enterprise.title, desc: t.hero.features.enterprise.desc },
+    { icon: Globe, title: t.hero.features.global.title, desc: t.hero.features.global.desc }
   ];
+
+  // Theme colors
+  const themeColors = theme === 'dark' ? {
+    bg: '#0A0B0F',
+    bgSecondary: '#12141A',
+    text: '#FFFFFF',
+    textSecondary: 'rgba(255, 255, 255, 0.7)',
+    border: 'rgba(255, 255, 255, 0.1)',
+    cardBg: 'rgba(18, 20, 26, 0.8)'
+  } : {
+    bg: '#FFFFFF',
+    bgSecondary: '#F8FAFC',
+    text: '#0F172A',
+    textSecondary: '#64748B',
+    border: '#E2E8F0',
+    cardBg: 'rgba(255, 255, 255, 0.8)'
+  };
 
   return (
     <div className="min-h-screen bg-[#0A0B0F] text-white relative overflow-hidden">

@@ -350,10 +350,10 @@ const Home = () => {
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <h3 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{project.client}</h3>
-                      <p className="text-[#39ADE3] text-xs uppercase tracking-widest font-bold">{project.industry}</p>
+                      <p className={`${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'} text-xs uppercase tracking-widest font-bold`}>{project.industry}</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00FFD1] to-[#39ADE3]">{project.result}</div>
+                      <div className={`text-4xl font-black ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00FFD1] to-[#39ADE3]' : 'text-[#0774B6]'}`}>{project.result}</div>
                       <div className={`text-xs ${isDark ? 'text-white/50' : 'text-slate-500'} uppercase tracking-wider font-semibold mt-1`}>{t.portfolio.impact}</div>
                     </div>
                   </div>

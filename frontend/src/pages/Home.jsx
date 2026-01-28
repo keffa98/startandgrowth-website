@@ -271,9 +271,9 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative z-10 space-y-3">
                       <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <Icon className="w-6 h-6 text-[#00FFD1]" />
+                        <Icon className={`w-6 h-6 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
                       </div>
-                      <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-[#00FFD1] transition-colors`}>{feature.title}</h3>
+                      <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} ${isDark ? 'group-hover:text-[#00FFD1]' : 'group-hover:text-[#0774B6]'} transition-colors`}>{feature.title}</h3>
                       <p className={`text-sm ${isDark ? 'text-white/60' : 'text-slate-600'}`}>{feature.desc}</p>
                     </div>
                   </div>

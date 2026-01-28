@@ -212,8 +212,8 @@ const Home = () => {
                 <span className={`block ${isDark ? 'text-white' : 'text-slate-900'} hover-3d`}>{t.hero.title3}</span>
               </h1>
 
-              <p className={`text-lg ${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed max-w-xl`}>
-                {t.hero.description} <span className="text-[#00FFD1] font-bold text-xl">60%</span> {t.hero.description2}
+              <p className={`text-lg ${isDark ? 'text-white/70' : 'text-slate-700'} leading-relaxed max-w-xl`}>
+                {t.hero.description} <span className={`${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} font-bold text-xl`}>60%</span> {t.hero.description2}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">

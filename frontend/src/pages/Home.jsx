@@ -360,7 +360,7 @@ const Home = () => {
                   <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed text-lg`}>{project.description}</p>
                   <div className={`pt-6 border-t ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
                     <div className="flex items-center gap-2 mb-3">
-                      <div className="w-1 h-1 rounded-full bg-[#00FFD1]"></div>
+                      <div className={`w-1 h-1 rounded-full ${isDark ? 'bg-[#00FFD1]' : 'bg-[#0774B6]'}`}></div>
                       <span className={`font-bold ${isDark ? 'text-white/90' : 'text-slate-700'} text-sm uppercase tracking-wider`}>{t.portfolio.solution}</span>
                     </div>
                     <p className={`${isDark ? 'text-white/60' : 'text-slate-600'}`}>{project.solution}</p>

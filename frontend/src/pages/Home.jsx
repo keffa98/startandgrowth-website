@@ -307,12 +307,12 @@ const Home = () => {
                     
                     <div className="relative space-y-6">
                       <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                        <Icon className="w-8 h-8 text-[#00FFD1] group-hover:text-[#39ADE3] transition-colors duration-500" />
+                        <Icon className={`w-8 h-8 ${isDark ? 'text-[#00FFD1] group-hover:text-[#39ADE3]' : 'text-[#0774B6] group-hover:text-[#39ADE3]'} transition-colors duration-500`} />
                       </div>
                       <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{service.title}</h3>
                       <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed`}>{service.description}</p>
                       <div className="pt-4">
-                        <div className="inline-flex items-center gap-2 text-[#00FFD1] group-hover:gap-4 transition-all duration-300 cursor-pointer font-bold">
+                        <div className={`inline-flex items-center gap-2 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} group-hover:gap-4 transition-all duration-300 cursor-pointer font-bold`}>
                           <span className="text-sm uppercase tracking-wider">{t.services.learnMore}</span>
                           <ChevronRight className="w-5 h-5" />
                         </div>

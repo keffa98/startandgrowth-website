@@ -204,18 +204,14 @@ export const translations = {
       badge: 'Contactez-Nous',
       title: 'Commencez Votre Transformation',
       subtitle: 'Discutons de la façon dont l\'IA peut accélérer votre croissance',
-      form: {
-        name: 'Nom',
-        email: 'Email',
-        company: 'Entreprise',
-        message: 'Message',
-        namePlaceholder: 'Jean Dupont',
-        emailPlaceholder: 'jean@entreprise.com',
-        companyPlaceholder: 'Nom de Votre Entreprise',
-        messagePlaceholder: 'Parlez-nous de votre projet, vos défis et vos objectifs...',
-        submit: 'Envoyer la Demande',
-        successMessage: 'Merci pour votre demande ! Nous vous contactons bientôt.'
-      }
+      description: 'Réservez une consultation gratuite de 30 minutes pour explorer comment l\'IA peut transformer vos opérations commerciales et générer des résultats mesurables.',
+      cta: 'Réserver Votre Consultation Gratuite',
+      features: [
+        'Session stratégique gratuite de 30 minutes',
+        'Feuille de route personnalisée d\'implémentation IA',
+        'Analyse ROI et répartition coûts-avantages',
+        'Q&R avec nos experts en IA'
+      ]
     },
     footer: {
       description: 'Spécialistes du conseil en IA et de l\'ingénierie logicielle aidant les entreprises à atteindre une croissance exponentielle grâce à l\'automatisation intelligente.',

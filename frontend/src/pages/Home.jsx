@@ -53,17 +53,6 @@ const Home = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert(t.contact.form.successMessage);
-    setFormData({ name: '', email: '', company: '', message: '' });
-  };
-
   const serviceIcons = {
     automation: Bot,
     formation: GraduationCap,

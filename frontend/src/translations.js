@@ -93,18 +93,14 @@ export const translations = {
       badge: 'Get In Touch',
       title: 'Start Your Transformation',
       subtitle: "Let's discuss how AI can accelerate your growth",
-      form: {
-        name: 'Name',
-        email: 'Email',
-        company: 'Company',
-        message: 'Message',
-        namePlaceholder: 'John Doe',
-        emailPlaceholder: 'john@company.com',
-        companyPlaceholder: 'Your Company Name',
-        messagePlaceholder: 'Tell us about your project, challenges, and goals...',
-        submit: 'Send Inquiry',
-        successMessage: 'Thank you for your inquiry! We will contact you soon.'
-      }
+      description: 'Book a free 30-minute consultation to explore how AI can transform your business operations and drive measurable results.',
+      cta: 'Book Your Free Consultation',
+      features: [
+        'Free 30-minute strategy session',
+        'Personalized AI implementation roadmap',
+        'ROI analysis and cost-benefit breakdown',
+        'Q&A with our AI experts'
+      ]
     },
     footer: {
       description: 'AI Consulting and Software Engineering specialists helping businesses achieve exponential growth through intelligent automation.',

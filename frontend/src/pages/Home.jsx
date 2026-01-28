@@ -13,13 +13,6 @@ const Home = () => {
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language];
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  });
-
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [stats, setStats] = useState({ clients: 0, savings: 0, roi: 0 });

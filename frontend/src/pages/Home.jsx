@@ -335,11 +335,24 @@ const Home = () => {
                       <p className={`${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'} text-xs uppercase tracking-widest font-bold`}>{project.industry}</p>
                     </div>
                     <div className="text-right">
-                      <div className={`text-4xl font-black ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00FFD1] to-[#39ADE3]' : 'text-[#0774B6]'}`}>{project.result}</div>
+                      <div className={`text-2xl font-black ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00FFD1] to-[#39ADE3]' : 'text-[#0774B6]'}`}>{project.result}</div>
                       <div className={`text-xs ${isDark ? 'text-white/50' : 'text-slate-500'} uppercase tracking-wider font-semibold mt-1`}>{t.portfolio.impact}</div>
                     </div>
                   </div>
-                  <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed text-lg`}>{project.description}</p>
+                  
+                  {/* Testimonial */}
+                  <div className={`${isDark ? 'bg-white/5' : 'bg-slate-50'} p-6 rounded-2xl border ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+                    <div className="flex gap-2 mb-4">
+                      <svg className={`w-6 h-6 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} flex-shrink-0`} fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                      </svg>
+                    </div>
+                    <p className={`${isDark ? 'text-white/80' : 'text-slate-700'} leading-relaxed italic mb-4`}>
+                      {project.testimonial}
+                    </p>
+                    <p className={`text-sm font-bold ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`}>— {project.author}</p>
+                  </div>
+                  
                   <div className={`pt-6 border-t ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
                     <div className="flex items-center gap-2 mb-3">
                       <div className={`w-1 h-1 rounded-full ${isDark ? 'bg-[#00FFD1]' : 'bg-[#0774B6]'}`}></div>

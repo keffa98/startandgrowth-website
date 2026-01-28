@@ -416,9 +416,9 @@ const Home = () => {
       <section id="contact" className="py-32 px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#00FFD1]/10 border border-[#00FFD1]/20 mb-6 backdrop-blur-xl">
-              <Users className="w-4 h-4 text-[#00FFD1]" />
-              <span className="text-xs font-bold text-[#00FFD1] uppercase tracking-wider">{t.contact.badge}</span>
+            <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full ${isDark ? 'bg-[#00FFD1]/10 border-[#00FFD1]/20' : 'bg-blue-50 border-blue-200'} border mb-6 backdrop-blur-xl`}>
+              <Users className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
+              <span className={`text-xs font-bold ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} uppercase tracking-wider`}>{t.contact.badge}</span>
             </div>
             <h2 className={`text-5xl lg:text-6xl font-black mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.contact.title}</h2>
             <p className={`text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto`}>{t.contact.subtitle}</p>

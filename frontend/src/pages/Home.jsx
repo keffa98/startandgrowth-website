@@ -391,8 +391,8 @@ const Home = () => {
                 className={`group relative p-8 ${isDark ? 'bg-[#12141A]/60 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-xl border hover:border-[#39ADE3]/50 rounded-3xl transition-all duration-500 hover:bg-opacity-80 cursor-pointer hover:scale-105 overflow-hidden`}
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <CheckCircle className="w-8 h-8 text-[#00FFD1] mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
-                <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-[#00FFD1] transition-colors duration-300`}>{benefit.title}</h3>
+                <CheckCircle className={`w-8 h-8 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`} />
+                <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white group-hover:text-[#00FFD1]' : 'text-slate-900 group-hover:text-[#0774B6]'} transition-colors duration-300`}>{benefit.title}</h3>
                 <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed`}>{benefit.description}</p>
               </div>
             ))}

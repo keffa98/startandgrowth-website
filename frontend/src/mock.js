@@ -23,7 +23,7 @@ export const mockData = {
       description: 'Automated market research workflow that generates comprehensive reports by simply inputting a product name. Drastically reduced time and resources spent on market research with impressive accuracy and insights.',
       solution: 'AI-Powered Market Research Automation',
       result: 'Competitive edge',
-      testimonial: 'We now have an automated market research workflow that generates comprehensive reports by simply inputting a product name. This has drastically reduced the time and resources we previously spent on market research, and the accuracy and insights are impressive, giving us a competitive edge, and we couldn't be more pleased with the results.',
+      testimonial: "We now have an automated market research workflow that generates comprehensive reports by simply inputting a product name. This has drastically reduced the time and resources we previously spent on market research, and the accuracy and insights are impressive, giving us a competitive edge, and we couldn't be more pleased with the results.",
       author: 'STUDIO COO'
     },
     {
@@ -32,7 +32,7 @@ export const mockData = {
       description: 'AI chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction while significantly reducing team workload.',
       solution: 'Intelligent Customer Service Chatbot',
       result: 'Instant response',
-      testimonial: 'Our client service has reached a whole new level. The chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction. It has significantly reduced our team\'s workload. Their technical expertise and understanding of our business needs were crucial in making this project a success.',
+      testimonial: "Our client service has reached a whole new level. The chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction. It has significantly reduced our team's workload. Their technical expertise and understanding of our business needs were crucial in making this project a success.",
       author: 'Bex Care Team'
     },
     {

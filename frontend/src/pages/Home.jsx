@@ -404,8 +404,8 @@ const Home = () => {
             <div className={`relative ${isDark ? 'bg-[#12141A]/80' : 'bg-white'} backdrop-blur-2xl border-2 border-[#39ADE3]/50 p-16 rounded-3xl text-center overflow-hidden shadow-2xl`}>
               <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/5 to-transparent"></div>
               <div className="relative">
-                <div className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] mb-4 animate-gradient-x bg-[length:200%_auto]">{t.benefits.roi}</div>
-                <p className={`text-xl ${isDark ? 'text-white/80' : 'text-slate-700'}`}>{t.benefits.roiDesc} <span className="text-[#00FFD1] font-bold">{t.benefits.roiTime}</span></p>
+                <div className={`text-7xl font-black ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto]' : 'text-[#0774B6]'} mb-4`}>{t.benefits.roi}</div>
+                <p className={`text-xl ${isDark ? 'text-white/80' : 'text-slate-700'}`}>{t.benefits.roiDesc} <span className={`${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} font-bold`}>{t.benefits.roiTime}</span></p>
               </div>
             </div>
           </div>

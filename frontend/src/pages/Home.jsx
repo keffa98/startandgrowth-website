@@ -201,9 +201,9 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column */}
             <div className="space-y-10">
-              <div className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200'} backdrop-blur-xl border hover:border-[#00FFD1]/50 transition-all duration-300 group cursor-pointer shadow-lg`}>
-                <Sparkles className="w-4 h-4 text-[#00FFD1] animate-pulse" />
-                <span className={`text-xs font-bold ${isDark ? 'text-white/90' : 'text-slate-700'} uppercase tracking-wider group-hover:text-[#00FFD1] transition-colors`}>{t.hero.badge}</span>
+              <div className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${isDark ? 'bg-white/5 border-white/10' : 'bg-blue-50 border-blue-200'} backdrop-blur-xl border hover:border-[#0774B6] transition-all duration-300 group cursor-pointer shadow-lg`}>
+                <Sparkles className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} animate-pulse`} />
+                <span className={`text-xs font-bold ${isDark ? 'text-white/90' : 'text-[#0774B6]'} uppercase tracking-wider transition-colors`}>{t.hero.badge}</span>
               </div>
 
               <h1 className="text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">

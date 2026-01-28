@@ -408,62 +408,49 @@ const Home = () => {
 
           <Card className={`relative ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-2xl'} backdrop-blur-2xl p-12 md:p-16 overflow-hidden rounded-3xl`}>
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 blur-3xl rounded-full"></div>
-            <form onSubmit={handleSubmit} className="relative space-y-8">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-3">
-                  <label className={`${isDark ? 'text-white' : 'text-slate-700'} font-bold text-sm uppercase tracking-wider`}>{t.contact.form.name} *</label>
-                  <Input
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className={`${isDark ? 'bg-white/5 border-white/20 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'} backdrop-blur-sm h-14 rounded-2xl focus:border-[#39ADE3] focus:ring-2 focus:ring-[#39ADE3]/20 transition-all duration-300 text-base`}
-                    placeholder={t.contact.form.namePlaceholder}
-                  />
-                </div>
-                <div className="space-y-3">
-                  <label className={`${isDark ? 'text-white' : 'text-slate-700'} font-bold text-sm uppercase tracking-wider`}>{t.contact.form.email} *</label>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className={`${isDark ? 'bg-white/5 border-white/20 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'} backdrop-blur-sm h-14 rounded-2xl focus:border-[#39ADE3] focus:ring-2 focus:ring-[#39ADE3]/20 transition-all duration-300 text-base`}
-                    placeholder={t.contact.form.emailPlaceholder}
-                  />
+            
+            <div className="relative space-y-10 text-center">
+              {/* Calendar Icon */}
+              <div className="flex justify-center">
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center">
+                  <svg className={`w-10 h-10 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
                 </div>
               </div>
-              <div className="space-y-3">
-                <label className={`${isDark ? 'text-white' : 'text-slate-700'} font-bold text-sm uppercase tracking-wider`}>{t.contact.form.company}</label>
-                <Input
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className={`${isDark ? 'bg-white/5 border-white/20 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'} backdrop-blur-sm h-14 rounded-2xl focus:border-[#39ADE3] focus:ring-2 focus:ring-[#39ADE3]/20 transition-all duration-300 text-base`}
-                  placeholder={t.contact.form.companyPlaceholder}
-                />
+
+              <div className="space-y-4">
+                <h3 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.contact.description}</h3>
               </div>
-              <div className="space-y-3">
-                <label className={`${isDark ? 'text-white' : 'text-slate-700'} font-bold text-sm uppercase tracking-wider`}>{t.contact.form.message} *</label>
-                <Textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className={`${isDark ? 'bg-white/5 border-white/20 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'} backdrop-blur-sm rounded-2xl focus:border-[#39ADE3] focus:ring-2 focus:ring-[#39ADE3]/20 resize-none transition-all duration-300 text-base`}
-                  placeholder={t.contact.form.messagePlaceholder}
-                />
+
+              {/* Features List */}
+              <div className={`grid md:grid-cols-2 gap-4 py-8 ${isDark ? 'text-white/80' : 'text-slate-700'}`}>
+                {t.contact.features.map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-3 text-left">
+                    <CheckCircle className={`w-5 h-5 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} flex-shrink-0`} />
+                    <span className="text-base">{feature}</span>
+                  </div>
+                ))}
               </div>
-              <Button 
-                type="submit"
-                className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-black px-12 h-16 rounded-full text-base w-full shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 group uppercase tracking-wider"
+
+              {/* CTA Button */}
+              <a 
+                href="https://calendar.app.google/6oxKVAdMUCvppBzXA" 
+                target="_blank" 
+                rel="noopener noreferrer"
               >
-                <span>{t.contact.form.submit}</span>
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
-              </Button>
-            </form>
+                <Button 
+                  className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-black px-12 h-16 rounded-full text-lg w-full md:w-auto shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 group uppercase tracking-wider"
+                >
+                  <span>{t.contact.cta}</span>
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                </Button>
+              </a>
+
+              <p className={`text-sm ${isDark ? 'text-white/50' : 'text-slate-500'}`}>
+                No credit card required • Cancel anytime
+              </p>
+            </div>
           </Card>
         </div>
       </section>

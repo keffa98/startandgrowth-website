@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Bot, GraduationCap, Gauge, CheckCircle, Mail, Linkedin, Sparkles, TrendingUp, Zap, Target, Users, Award, ChevronRight, Rocket, BarChart, Brain, Code, Shield, Globe } from 'lucide-react';
+import { ArrowRight, Bot, GraduationCap, Gauge, CheckCircle, Mail, Linkedin, Sparkles, TrendingUp, Zap, Target, Users, Award, ChevronRight, Rocket, BarChart, Brain, Code, Shield, Globe, Sun, Moon } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { mockData } from '../mock';
+import { useTheme, useLanguage } from '../context/AppContext';
+import { translations } from '../translations';
 
 const Home = () => {
   const [formData, setFormData] = useState({

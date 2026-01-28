@@ -32,7 +32,7 @@ export const mockData = {
       description: 'AI chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction while significantly reducing team workload.',
       solution: 'Intelligent Customer Service Chatbot',
       result: 'Instant response',
-      testimonial: "Our client service has reached a whole new level. The chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction. It has significantly reduced our team's workload. Their technical expertise and understanding of our business needs were crucial in making this project a success.",
+      testimonial: 'Our client service has reached a whole new level. The chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction. It has significantly reduced our team workload. Their technical expertise and understanding of our business needs were crucial in making this project a success.',
       author: 'Bex Care Team'
     },
     {

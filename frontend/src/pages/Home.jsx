@@ -235,21 +235,21 @@ const Home = () => {
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
-                    <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]">{stats.clients}+</div>
+                    <div className={`text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.clients}+</div>
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.clients}</div>
                   </div>
                 </div>
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
-                    <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]">{stats.savings}%</div>
+                    <div className={`text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.savings}%</div>
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.savings}</div>
                   </div>
                 </div>
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
-                    <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]">{stats.roi}%</div>
+                    <div className={`text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.roi}%</div>
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.roi}</div>
                   </div>
                 </div>

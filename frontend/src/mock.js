@@ -23,7 +23,7 @@ export const mockData = {
       description: 'Automated market research workflow that generates comprehensive reports by simply inputting a product name. Drastically reduced time and resources spent on market research with impressive accuracy and insights.',
       solution: 'AI-Powered Market Research Automation',
       result: 'Competitive edge',
-      testimonial: "We now have an automated market research workflow that generates comprehensive reports by simply inputting a product name. This has drastically reduced the time and resources we previously spent on market research, and the accuracy and insights are impressive, giving us a competitive edge, and we couldn't be more pleased with the results.",
+      testimonial: 'We now have an automated market research workflow that generates comprehensive reports by simply inputting a product name. This has drastically reduced the time and resources we previously spent on market research, and the accuracy and insights are impressive, giving us a competitive edge, and we could not be more pleased with the results.',
       author: 'STUDIO COO'
     },
     {

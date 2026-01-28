@@ -100,6 +100,76 @@ const Home = () => {
           />
         </div>
         
+        {/* Floating Icons and Shapes */}
+        <div className={`absolute inset-0 ${isDark ? 'opacity-10' : 'opacity-8'}`}>
+          {/* AI Brain Icon */}
+          <div className="absolute top-[15%] left-[8%] animate-float-slow">
+            <Brain className={`w-16 h-16 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* Code Icon */}
+          <div className="absolute top-[25%] right-[12%] animate-float-delayed" style={{ animationDelay: '1s' }}>
+            <Code className={`w-20 h-20 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+          
+          {/* Rocket Icon */}
+          <div className="absolute top-[60%] left-[15%] animate-float-slow" style={{ animationDelay: '2s' }}>
+            <Rocket className={`w-14 h-14 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* Bar Chart Icon */}
+          <div className="absolute bottom-[20%] right-[18%] animate-float-delayed" style={{ animationDelay: '1.5s' }}>
+            <BarChart className={`w-18 h-18 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+          
+          {/* Zap Icon */}
+          <div className="absolute top-[40%] right-[8%] animate-float-slow" style={{ animationDelay: '0.5s' }}>
+            <Zap className={`w-12 h-12 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* Target Icon */}
+          <div className="absolute bottom-[35%] left-[10%] animate-float-delayed" style={{ animationDelay: '2.5s' }}>
+            <Target className={`w-16 h-16 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+          
+          {/* Sparkles Icon */}
+          <div className="absolute top-[70%] right-[25%] animate-float-slow" style={{ animationDelay: '1.2s' }}>
+            <Sparkles className={`w-14 h-14 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* TrendingUp Icon */}
+          <div className="absolute top-[50%] left-[5%] animate-float-delayed" style={{ animationDelay: '3s' }}>
+            <TrendingUp className={`w-18 h-18 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+        </div>
+        
+        {/* Geometric Shapes */}
+        <div className={`absolute inset-0 ${isDark ? 'opacity-5' : 'opacity-4'}`}>
+          {/* Circles */}
+          <div className="absolute top-[20%] right-[20%] w-32 h-32 border-2 border-[#39ADE3] rounded-full animate-spin-slow"></div>
+          <div className="absolute bottom-[30%] left-[25%] w-24 h-24 border-2 border-[#00FFD1] rounded-full animate-pulse-slow"></div>
+          
+          {/* Squares */}
+          <div className="absolute top-[45%] right-[30%] w-20 h-20 border-2 border-[#39ADE3] animate-rotate-slow"></div>
+          <div className="absolute bottom-[15%] left-[35%] w-28 h-28 border-2 border-[#00FFD1] animate-rotate-reverse"></div>
+          
+          {/* Triangles */}
+          <div className="absolute top-[35%] left-[20%] w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[35px] border-b-[#39ADE3] animate-float-slow"></div>
+          <div className="absolute bottom-[40%] right-[15%] w-0 h-0 border-l-[25px] border-l-transparent border-r-[25px] border-r-transparent border-b-[40px] border-b-[#00FFD1] animate-float-delayed" style={{ animationDelay: '2s' }}></div>
+          
+          {/* Hexagons (using SVG-like shapes) */}
+          <div className="absolute top-[55%] right-[40%] w-16 h-16 animate-pulse-slow" style={{ animationDelay: '1s' }}>
+            <svg viewBox="0 0 100 100" className={`w-full h-full ${isDark ? 'stroke-[#39ADE3]' : 'stroke-[#0774B6]'}`} fill="none" strokeWidth="2">
+              <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" />
+            </svg>
+          </div>
+          <div className="absolute bottom-[25%] left-[40%] w-20 h-20 animate-rotate-slow">
+            <svg viewBox="0 0 100 100" className={`w-full h-full ${isDark ? 'stroke-[#00FFD1]' : 'stroke-[#39ADE3]'}`} fill="none" strokeWidth="2">
+              <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" />
+            </svg>
+          </div>
+        </div>
+        
         <div 
           className={`absolute inset-0 ${isDark ? 'opacity-10' : 'opacity-5'}`}
           style={{

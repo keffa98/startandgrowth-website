@@ -18,32 +18,40 @@ export const mockData = {
   ],
   portfolio: [
     {
-      client: 'TechScale SaaS',
-      industry: 'Software as a Service',
-      description: 'Implemented AI-powered customer support automation and predictive analytics for user behavior.',
-      solution: 'Custom AI chatbot + Machine Learning models',
-      result: '+45% efficiency'
+      client: 'STUDIO',
+      industry: 'Market Research',
+      description: 'Automated market research workflow that generates comprehensive reports by simply inputting a product name. Drastically reduced time and resources spent on market research with impressive accuracy and insights.',
+      solution: 'AI-Powered Market Research Automation',
+      result: 'Competitive edge',
+      testimonial: 'We now have an automated market research workflow that generates comprehensive reports by simply inputting a product name. This has drastically reduced the time and resources we previously spent on market research, and the accuracy and insights are impressive, giving us a competitive edge, and we couldn't be more pleased with the results.',
+      author: 'STUDIO COO'
     },
     {
-      client: 'FinanceFirst',
-      industry: 'Financial Services',
-      description: 'Developed automated document processing system and risk assessment algorithms to streamline operations.',
-      solution: 'Computer Vision + NLP Integration',
-      result: '60% cost reduction'
+      client: 'Bex Care',
+      industry: 'Healthcare & Customer Service',
+      description: 'AI chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction while significantly reducing team workload.',
+      solution: 'Intelligent Customer Service Chatbot',
+      result: 'Instant response',
+      testimonial: 'Our client service has reached a whole new level. The chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction. It has significantly reduced our team\'s workload. Their technical expertise and understanding of our business needs were crucial in making this project a success.',
+      author: 'Bex Care Team'
     },
     {
-      client: 'RetailPro',
-      industry: 'E-commerce',
-      description: 'Created intelligent inventory management system with demand forecasting capabilities.',
-      solution: 'Predictive Analytics + Automation',
-      result: '€2M saved annually'
+      client: 'Dr. Dieudonnée METO',
+      industry: 'Healthcare Practice',
+      description: 'Automated prescription generation during consultations allows doctors to focus more on patients and less on administrative tasks. Fast, efficient, and error-free system improving patient care.',
+      solution: 'Healthcare Workflow Automation',
+      result: 'Streamlined operations',
+      testimonial: 'The automation of prescription generation during consultations has been a game-changer for my practice. They created a solution that allows me to focus more on my patients and less on administrative tasks. The automated system is fast, efficient, and error-free, making my workflow smoother and improving patient care. I highly recommend their services to any healthcare professional looking to streamline their operations.',
+      author: 'Doctor Dieudonnée METO'
     },
     {
-      client: 'MediCare+',
-      industry: 'Healthcare',
-      description: 'Built AI-assisted patient data management and appointment optimization system.',
-      solution: 'AI Workflow Automation',
-      result: '3x faster processing'
+      client: 'POD',
+      industry: 'SaaS & Technology',
+      description: 'Scalable SaaS platform for online profiles and NFC tagging that allows users to easily create profiles and link them to NFC devices for seamless interactions.',
+      solution: 'Custom SaaS Platform Development',
+      result: 'User-friendly platform',
+      testimonial: 'Developing our SaaS platform for online profiles and NFC tagging has been an incredible experience. They delivered a scalable solution that allows users to easily create profiles and link them to NFC devices for seamless interactions. Problem-solving approach and attention to detail have made the platform intuitive and user-friendly, and our users are thrilled with the results.',
+      author: 'POD Team'
     }
   ],
   benefits: [

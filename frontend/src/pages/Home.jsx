@@ -9,6 +9,10 @@ import { useTheme, useLanguage } from '../context/AppContext';
 import { translations } from '../translations';
 
 const Home = () => {
+  const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

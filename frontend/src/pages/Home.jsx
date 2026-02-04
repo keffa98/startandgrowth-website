@@ -473,56 +473,56 @@ const Home = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-32 px-6 lg:px-20 relative">
+      <section id="portfolio" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-20">
-            <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full ${isDark ? 'bg-[#00FFD1]/10 border-[#00FFD1]/20' : 'bg-blue-50 border-blue-200'} border mb-6 backdrop-blur-xl`}>
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <div className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full ${isDark ? 'bg-[#00FFD1]/10 border-[#00FFD1]/20' : 'bg-blue-50 border-blue-200'} border mb-4 sm:mb-6 backdrop-blur-xl`}>
               <Award className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
               <span className={`text-xs font-bold ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} uppercase tracking-wider`}>{t.portfolio.badge}</span>
             </div>
-            <h2 className={`text-5xl lg:text-6xl font-black mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.portfolio.title}</h2>
-            <p className={`text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto`}>{t.portfolio.subtitle}</p>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 ${isDark ? 'text-white' : 'text-slate-900'} px-4`}>{t.portfolio.title}</h2>
+            <p className={`text-base sm:text-lg lg:text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto px-4`}>{t.portfolio.subtitle}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
             {mockData.portfolio.map((project, index) => (
               <Card 
                 key={index} 
-                className={`group relative ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-2xl p-10 hover:border-[#39ADE3]/50 rounded-3xl transition-all duration-500 overflow-hidden hover:scale-105 hover:shadow-2xl hover:shadow-[#39ADE3]/20`}
+                className={`group relative ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-2xl p-5 sm:p-8 lg:p-10 hover:border-[#39ADE3]/50 rounded-2xl sm:rounded-3xl transition-all duration-500 overflow-hidden md:hover:scale-105 hover:shadow-2xl hover:shadow-[#39ADE3]/20`}
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#39ADE3]/20 via-[#00FFD1]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl rounded-full"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 sm:w-64 sm:h-64 bg-gradient-to-br from-[#39ADE3]/20 via-[#00FFD1]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl rounded-full"></div>
                 
-                <div className="relative space-y-6">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2">
-                      <h3 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{project.client}</h3>
+                <div className="relative space-y-4 sm:space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
+                    <div className="space-y-1 sm:space-y-2">
+                      <h3 className={`text-xl sm:text-2xl lg:text-3xl font-black ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{project.client}</h3>
                       <p className={`${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'} text-xs uppercase tracking-widest font-bold`}>{project.industry}</p>
                     </div>
-                    <div className="text-right">
-                      <div className={`text-2xl font-black ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00FFD1] to-[#39ADE3]' : 'text-[#0774B6]'}`}>{project.result}</div>
+                    <div className="sm:text-right">
+                      <div className={`text-lg sm:text-xl lg:text-2xl font-black ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#00FFD1] to-[#39ADE3]' : 'text-[#0774B6]'}`}>{project.result}</div>
                       <div className={`text-xs ${isDark ? 'text-white/50' : 'text-slate-500'} uppercase tracking-wider font-semibold mt-1`}>{t.portfolio.impact}</div>
                     </div>
                   </div>
                   
                   {/* Testimonial */}
-                  <div className={`${isDark ? 'bg-white/5' : 'bg-slate-50'} p-6 rounded-2xl border ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
-                    <div className="flex gap-2 mb-4">
-                      <svg className={`w-6 h-6 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} flex-shrink-0`} fill="currentColor" viewBox="0 0 24 24">
+                  <div className={`${isDark ? 'bg-white/5' : 'bg-slate-50'} p-4 sm:p-6 rounded-xl sm:rounded-2xl border ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+                    <div className="flex gap-2 mb-3 sm:mb-4">
+                      <svg className={`w-5 h-5 sm:w-6 sm:h-6 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} flex-shrink-0`} fill="currentColor" viewBox="0 0 24 24">
                         <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                       </svg>
                     </div>
-                    <p className={`${isDark ? 'text-white/80' : 'text-slate-700'} leading-relaxed italic mb-4`}>
+                    <p className={`${isDark ? 'text-white/80' : 'text-slate-700'} leading-relaxed italic mb-3 sm:mb-4 text-sm sm:text-base`}>
                       {project.testimonial}
                     </p>
-                    <p className={`text-sm font-bold ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`}>— {project.author}</p>
+                    <p className={`text-xs sm:text-sm font-bold ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`}>— {project.author}</p>
                   </div>
                   
-                  <div className={`pt-6 border-t ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
-                    <div className="flex items-center gap-2 mb-3">
+                  <div className={`pt-4 sm:pt-6 border-t ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3">
                       <div className={`w-1 h-1 rounded-full ${isDark ? 'bg-[#00FFD1]' : 'bg-[#0774B6]'}`}></div>
-                      <span className={`font-bold ${isDark ? 'text-white/90' : 'text-slate-700'} text-sm uppercase tracking-wider`}>{t.portfolio.solution}</span>
+                      <span className={`font-bold ${isDark ? 'text-white/90' : 'text-slate-700'} text-xs sm:text-sm uppercase tracking-wider`}>{t.portfolio.solution}</span>
                     </div>
-                    <p className={`${isDark ? 'text-white/60' : 'text-slate-600'}`}>{project.solution}</p>
+                    <p className={`${isDark ? 'text-white/60' : 'text-slate-600'} text-sm sm:text-base`}>{project.solution}</p>
                   </div>
                 </div>
               </Card>
@@ -532,27 +532,27 @@ const Home = () => {
       </section>
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-32 px-6 lg:px-20 relative">
+      <section id="benefits" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-20">
-            <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full ${isDark ? 'bg-[#39ADE3]/10 border-[#39ADE3]/20' : 'bg-blue-50 border-blue-200'} border mb-6 backdrop-blur-xl`}>
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <div className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full ${isDark ? 'bg-[#39ADE3]/10 border-[#39ADE3]/20' : 'bg-blue-50 border-blue-200'} border mb-4 sm:mb-6 backdrop-blur-xl`}>
               <TrendingUp className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
               <span className={`text-xs font-bold ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} uppercase tracking-wider`}>{t.benefits.badge}</span>
             </div>
-            <h2 className={`text-5xl lg:text-6xl font-black mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.benefits.title}</h2>
-            <p className={`text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto`}>{t.benefits.subtitle}</p>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 ${isDark ? 'text-white' : 'text-slate-900'} px-4`}>{t.benefits.title}</h2>
+            <p className={`text-base sm:text-lg lg:text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto px-4`}>{t.benefits.subtitle}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12 lg:mb-16">
             {t.benefits.items.map((benefit, index) => (
               <div 
                 key={index} 
-                className={`group relative p-8 ${isDark ? 'bg-[#12141A]/60 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-xl border hover:border-[#39ADE3]/50 rounded-3xl transition-all duration-500 hover:bg-opacity-80 cursor-pointer hover:scale-105 overflow-hidden`}
+                className={`group relative p-5 sm:p-6 lg:p-8 ${isDark ? 'bg-[#12141A]/60 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-xl border hover:border-[#39ADE3]/50 rounded-2xl sm:rounded-3xl transition-all duration-500 hover:bg-opacity-80 cursor-pointer md:hover:scale-105 overflow-hidden`}
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <CheckCircle className={`w-8 h-8 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`} />
-                <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white group-hover:text-[#00FFD1]' : 'text-slate-900 group-hover:text-[#0774B6]'} transition-colors duration-300`}>{benefit.title}</h3>
-                <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed`}>{benefit.description}</p>
+                <CheckCircle className={`w-6 h-6 sm:w-8 sm:h-8 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`} />
+                <h3 className={`text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 ${isDark ? 'text-white group-hover:text-[#00FFD1]' : 'text-slate-900 group-hover:text-[#0774B6]'} transition-colors duration-300`}>{benefit.title}</h3>
+                <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed text-sm sm:text-base`}>{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -634,43 +634,43 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className={`border-t ${isDark ? 'border-white/10' : 'border-slate-200'} py-16 px-6 lg:px-20 relative transition-colors duration-500`}>
+      <footer className={`border-t ${isDark ? 'border-white/10' : 'border-slate-200'} py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-20 relative transition-colors duration-500`}>
         <div className="container mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="space-y-6 md:col-span-2">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
+            <div className="space-y-4 sm:space-y-6 sm:col-span-2 lg:col-span-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_startgrowthlab/artifacts/1vv64623_IMG_4950.PNG" 
                 alt="Start & Growth Logo" 
-                className="h-10 object-contain"
+                className="h-8 sm:h-10 object-contain"
               />
-              <p className={`${isDark ? 'text-white/60' : 'text-slate-600'} leading-relaxed max-w-md`}>{t.footer.description}</p>
+              <p className={`${isDark ? 'text-white/60' : 'text-slate-600'} leading-relaxed max-w-md text-sm sm:text-base`}>{t.footer.description}</p>
               <div className="flex gap-4">
-                {/*<a href="#" className={`w-12 h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
-                  <Mail className={`w-5 h-5 ${isDark ? 'text-white' : 'text-slate-600'} group-hover:text-white transition-colors`} />
+                {/*<a href="#" className={`w-10 h-10 sm:w-12 sm:h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
+                  <Mail className={`w-4 h-4 sm:w-5 sm:h-5 ${isDark ? 'text-white' : 'text-slate-600'} group-hover:text-white transition-colors`} />
                 </a>*/}
-                {/*<a href="#" className={`w-12 h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
-                  <Linkedin className={`w-5 h-5 ${isDark ? 'text-white' : 'text-slate-600'} group-hover:text-white transition-colors`} />
+                {/*<a href="#" className={`w-10 h-10 sm:w-12 sm:h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
+                  <Linkedin className={`w-4 h-4 sm:w-5 sm:h-5 ${isDark ? 'text-white' : 'text-slate-600'} group-hover:text-white transition-colors`} />
                 </a>*/}
               </div>
             </div>
-            <div className="space-y-4">
-              <h4 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-6 uppercase tracking-wider`}>{t.footer.quickLinks}</h4>
-              <nav className="flex flex-col gap-3">
+            <div className="space-y-3 sm:space-y-4">
+              <h4 className={`text-base sm:text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-4 sm:mb-6 uppercase tracking-wider`}>{t.footer.quickLinks}</h4>
+              <nav className="flex flex-col gap-2 sm:gap-3">
                 {[t.nav.services, t.nav.portfolio, t.nav.benefits, t.nav.contact].map((item, idx) => (
-                  <a key={idx} href={`#${['services', 'portfolio', 'benefits', 'contact'][idx]}`} className={`${isDark ? 'text-white/60 hover:text-[#00FFD1]' : 'text-slate-600 hover:text-[#0774B6]'} transition-all duration-300 hover:translate-x-2 inline-block text-sm`}>{item}</a>
+                  <a key={idx} href={`#${['services', 'portfolio', 'benefits', 'contact'][idx]}`} className={`${isDark ? 'text-white/60 hover:text-[#00FFD1]' : 'text-slate-600 hover:text-[#0774B6]'} transition-all duration-300 hover:translate-x-2 inline-block text-xs sm:text-sm`}>{item}</a>
                 ))}
               </nav>
             </div>
-            <div className="space-y-4">
-              <h4 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-6 uppercase tracking-wider`}>{t.footer.services}</h4>
-              <nav className="flex flex-col gap-3">
+            <div className="space-y-3 sm:space-y-4">
+              <h4 className={`text-base sm:text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-4 sm:mb-6 uppercase tracking-wider`}>{t.footer.services}</h4>
+              <nav className="flex flex-col gap-2 sm:gap-3">
                 {t.footer.servicesItems.map((item, idx) => (
-                  <a key={idx} href="#services" className={`${isDark ? 'text-white/60 hover:text-[#00FFD1]' : 'text-slate-600 hover:text-[#0774B6]'} transition-all duration-300 hover:translate-x-2 inline-block text-sm`}>{item}</a>
+                  <a key={idx} href="#services" className={`${isDark ? 'text-white/60 hover:text-[#00FFD1]' : 'text-slate-600 hover:text-[#0774B6]'} transition-all duration-300 hover:translate-x-2 inline-block text-xs sm:text-sm`}>{item}</a>
                 ))}
               </nav>
             </div>
           </div>
-          <div className={`pt-8 border-t ${isDark ? 'border-white/10 text-white/50' : 'border-slate-200 text-slate-600'} text-center text-sm`}>
+          <div className={`pt-6 sm:pt-8 border-t ${isDark ? 'border-white/10 text-white/50' : 'border-slate-200 text-slate-600'} text-center text-xs sm:text-sm`}>
             <p>{t.footer.copyright.replace('{YEAR}', new Date().getFullYear())}</p>
           </div>
         </div>

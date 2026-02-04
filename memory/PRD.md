@@ -69,6 +69,7 @@ Professional website for "Startandgrowth," an AI consulting business targeting h
 - Fixed missing `Link` import from react-router-dom
 - Fixed missing `Calendar` import from lucide-react
 - Completed responsiveness for Portfolio, Benefits, Footer sections
+- Added animated background and translations to Event page
 
 ## Backlog / Future Tasks
 

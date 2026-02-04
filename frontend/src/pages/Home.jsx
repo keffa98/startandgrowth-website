@@ -286,64 +286,64 @@ const Home = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-24 px-6 lg:px-20 relative">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column */}
-            <div className="space-y-10">
-              <div className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${isDark ? 'bg-white/5 border-white/10' : 'bg-blue-50 border-blue-200'} backdrop-blur-xl border hover:border-[#0774B6] transition-all duration-300 group cursor-pointer shadow-lg`}>
+            <div className="space-y-8 lg:space-y-10">
+              <div className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full ${isDark ? 'bg-white/5 border-white/10' : 'bg-blue-50 border-blue-200'} backdrop-blur-xl border hover:border-[#0774B6] transition-all duration-300 group cursor-pointer shadow-lg`}>
                 <Sparkles className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} animate-pulse`} />
                 <span className={`text-xs font-bold ${isDark ? 'text-white/90' : 'text-[#0774B6]'} uppercase tracking-wider transition-colors`}>{t.hero.badge}</span>
               </div>
 
-              <h1 className="text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
                 <span className={`block ${isDark ? 'text-white' : 'text-slate-900'} hover-3d`}>{t.hero.title1}</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">{t.hero.title2}</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">{t.hero.title3}</span>
               </h1>
 
-              <p className={`text-lg ${isDark ? 'text-white/70' : 'text-slate-700'} leading-relaxed max-w-xl`}>
+              <p className={`text-base sm:text-lg ${isDark ? 'text-white/70' : 'text-slate-700'} leading-relaxed max-w-xl`}>
                 {t.hero.description} {/* <span className={`${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} font-bold text-xl`}>60%</span> */} {t.hero.description2}
               </p>
 
-              <h2 className="block text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">
+              <h2 className="block text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">
               Innovate, Automate and Scale.
               </h2>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#contact">
-                  <Button className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-8 h-14 rounded-full text-base group shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 border-2 border-white/20">
+                <a href="#contact" className="w-full sm:w-auto">
+                  <Button className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-6 sm:px-8 h-12 sm:h-14 rounded-full text-sm sm:text-base group shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 border-2 border-white/20 w-full">
                     <span>{t.hero.cta1}</span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                   </Button>
                 </a>
-                <a href="#portfolio">
-                  <Button className={`${isDark ? 'bg-white/5 text-white hover:bg-white/10 border-white/20' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200'} backdrop-blur-xl border hover:border-[#39ADE3] font-bold px-8 h-14 rounded-full text-base transition-all duration-300 hover:scale-105`}>
+                <a href="#portfolio" className="w-full sm:w-auto">
+                  <Button className={`${isDark ? 'bg-white/5 text-white hover:bg-white/10 border-white/20' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200'} backdrop-blur-xl border hover:border-[#39ADE3] font-bold px-6 sm:px-8 h-12 sm:h-14 rounded-full text-sm sm:text-base transition-all duration-300 hover:scale-105 w-full`}>
                     {t.hero.cta2}
                   </Button>
                 </a>
               </div>
 
               {/* Mini stats */}
-              {/*<div className="grid grid-cols-3 gap-6 pt-6">
+              {/*<div className="grid grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-6">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
-                    <div className={`text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.clients}+</div>
+                    <div className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.clients}+</div>
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.clients}</div>
                   </div>
                 </div>
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
-                    <div className={`text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.savings}%</div>
+                    <div className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.savings}%</div>
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.savings}</div>
                   </div>
                 </div>
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
-                    <div className={`text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.roi}%</div>
+                    <div className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] to-[#00FFD1]' : 'text-[#0774B6]'}`}>{stats.roi}%</div>
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.roi}</div>
                   </div>
                 </div>
@@ -351,24 +351,24 @@ const Home = () => {
             </div> 
 
             {/* Right Column - Bento Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {features.map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
                   <div 
                     key={idx}
-                    className={`group relative overflow-hidden rounded-3xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-xl border p-6 hover:border-[#39ADE3]/50 transition-all duration-500 hover:scale-105 cursor-pointer`}
+                    className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-xl border p-4 sm:p-6 hover:border-[#39ADE3]/50 transition-all duration-500 hover:scale-105 cursor-pointer`}
                     style={{
                       animation: `float-up 0.6s ease-out ${idx * 0.1}s both`
                     }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10 space-y-3">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <Icon className={`w-6 h-6 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
+                    <div className="relative z-10 space-y-2 sm:space-y-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
                       </div>
-                      <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} ${isDark ? 'group-hover:text-[#00FFD1]' : 'group-hover:text-[#0774B6]'} transition-colors`}>{feature.title}</h3>
-                      <p className={`text-sm ${isDark ? 'text-white/60' : 'text-slate-600'}`}>{feature.desc}</p>
+                      <h3 className={`text-sm sm:text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'} ${isDark ? 'group-hover:text-[#00FFD1]' : 'group-hover:text-[#0774B6]'} transition-colors`}>{feature.title}</h3>
+                      <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-slate-600'} line-clamp-2`}>{feature.desc}</p>
                     </div>
                   </div>
                 );

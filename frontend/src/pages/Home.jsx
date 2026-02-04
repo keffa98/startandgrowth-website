@@ -378,6 +378,57 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Event Teaser Section */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative">
+        <div className="container mx-auto max-w-6xl">
+          <Card className={`relative ${isDark ? 'bg-gradient-to-br from-[#12141A] to-[#0A0B0F] border-[#00FFD1]/20' : 'bg-gradient-to-br from-white to-slate-50 border-[#0774B6]/20'} backdrop-blur-xl p-8 sm:p-12 md:p-16 overflow-hidden rounded-3xl border-2 hover:scale-105 transition-all duration-500`}>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#00FFD1]/20 to-[#39ADE3]/10 blur-3xl rounded-full"></div>
+            
+            <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00FFD1]/10 border border-[#00FFD1]/30 backdrop-blur-xl">
+                  <Sparkles className="w-4 h-4 text-[#00FFD1] animate-pulse" />
+                  <span className="text-xs font-bold text-[#00FFD1] uppercase tracking-wider">{t.event.badge}</span>
+                </div>
+                
+                <h2 className={`text-4xl sm:text-5xl font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  {t.event.title}
+                </h2>
+                
+                <p className={`text-xl ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'} font-semibold`}>
+                  {t.event.subtitle}
+                </p>
+                
+                <p className={`text-lg ${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed`}>
+                  {t.event.tagline}
+                </p>
+                
+                <p className={`text-base ${isDark ? 'text-white/60' : 'text-slate-500'}`}>
+                  {t.event.description}
+                </p>
+                
+                <Link to="/event">
+                  <Button className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-8 h-14 rounded-full text-base group shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 border-2 border-white/20">
+                    <span>{t.event.cta}</span>
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                  </Button>
+                </Link>
+              </div>
+              
+              <div className="relative hidden lg:block">
+                <div className="relative w-full aspect-square">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/30 to-[#00FFD1]/20 rounded-3xl animate-pulse-slow"></div>
+                  <div className="absolute inset-8 bg-gradient-to-tr from-[#0774B6]/40 to-[#39ADE3]/30 rounded-3xl animate-float-slow"></div>
+                  <div className="absolute inset-16 flex items-center justify-center">
+                    <Calendar className={`w-32 h-32 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="services" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-7xl">

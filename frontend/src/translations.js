@@ -9,9 +9,9 @@ export const translations = {
     },
     hero: {
       badge: 'Powered by AI',
-      title1: 'Transform',
-      title2: 'Business',
-      title3: 'Growth',
+      title1: 'Use',
+      title2: 'Technology',
+      title3: 'As Your Growth Engine',
       description: 'Reduce operational costs by',
       description2: 'while scaling exponentially. Enterprise AI consulting for ambitious companies.',
       cta1: 'Schedule Consultation',
@@ -23,8 +23,8 @@ export const translations = {
       },
       features: {
         aiPowered: { title: 'AI-Powered', desc: 'Cutting-edge intelligence' },
-        fastResults: { title: 'Fast Results', desc: '6-12 months ROI' },
-        enterprise: { title: 'Enterprise Grade', desc: 'Bank-level security' },
+        fastResults: { title: 'Fast Results', desc: '2-12 months ROI' },
+        enterprise: { title: 'Enterprise Grade', desc: 'SME, Mid-cap, Large Enterprise' },
         global: { title: 'Global Scale', desc: 'Worldwide deployment' }
       }
     },
@@ -35,7 +35,7 @@ export const translations = {
       learnMore: 'Learn More',
       items: [
         {
-          title: 'Business Operation Automation with AI',
+          title: ' Business Ops Automation',
           description: 'Streamline repetitive tasks, optimize workflows, and reduce operational costs by implementing intelligent automation solutions tailored to your business processes.'
         },
         {
@@ -107,7 +107,7 @@ export const translations = {
       quickLinks: 'Quick Links',
       services: 'Services',
       servicesItems: ['AI Automation', 'AI Training', 'Performance Audit'],
-      copyright: '© 2025 Startandgrowth. All rights reserved. Engineered for the future.'
+      copyright: '© 2022 - {YEAR} Startandgrowth. All rights reserved. Innovate,Automate and Scale.'
     }
   },
   fr: {
@@ -120,9 +120,9 @@ export const translations = {
     },
     hero: {
       badge: 'Propulsé par IA',
-      title1: 'Transformez',
-      title2: 'La Croissance',
-      title3: 'De Votre Entreprise',
+      title1: 'Utilisez',
+      title2: 'la technologie',
+      title3: 'comme moteur de croissance',
       description: 'Réduisez les coûts opérationnels de',
       description2: 'tout en augmentant la productivité de manière exponentielle. Conseil en IA d\'entreprise pour les sociétés ambitieuses.',
       cta1: 'Planifier une Consultation',
@@ -134,8 +134,8 @@ export const translations = {
       },
       features: {
         aiPowered: { title: 'Propulsé par IA', desc: 'Intelligence de pointe' },
-        fastResults: { title: 'Résultats Rapides', desc: 'ROI en 6-12 mois' },
-        enterprise: { title: 'Niveau Entreprise', desc: 'Sécurité bancaire' },
+        fastResults: { title: 'Résultats Rapides', desc: 'ROI en 2-6 mois' },
+        enterprise: { title: 'Niveau Entreprise', desc: 'PME, ETI, Grande Entreprise' },
         global: { title: 'Échelle Mondiale', desc: 'Déploiement mondial' }
       }
     },
@@ -146,7 +146,7 @@ export const translations = {
       learnMore: 'En Savoir Plus',
       items: [
         {
-          title: 'Automatisation des Opérations Commerciales avec IA',
+          title: 'Automatisation des Opérations Commerciales',
           description: 'Rationalisez les tâches répétitives, optimisez les flux de travail et réduisez les coûts opérationnels en implémentant des solutions d\'automatisation intelligente adaptées à vos processus métier.'
         },
         {
@@ -160,7 +160,7 @@ export const translations = {
       ]
     },
     portfolio: {
-      badge: 'Histoires de Succès',
+      badge: 'Success Stories',
       title: 'Impact Réel, Résultats Réels',
       subtitle: 'Transformer les entreprises avec des résultats mesurables',
       impact: 'Impact',
@@ -218,7 +218,7 @@ export const translations = {
       quickLinks: 'Liens Rapides',
       services: 'Services',
       servicesItems: ['Automatisation IA', 'Formation IA', 'Audit de Performance'],
-      copyright: '© 2025 Startandgrowth. Tous droits réservés. Conçu pour l\'avenir.'
+      copyright: '© 2022 - {YEAR} Startandgrowth. Tous droits réservés.'
     }
   }
 };

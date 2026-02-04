@@ -379,36 +379,36 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-32 px-6 lg:px-20 relative">
+      <section id="services" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-20">
-            <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full ${isDark ? 'bg-[#39ADE3]/10 border-[#39ADE3]/20' : 'bg-blue-50 border-blue-200'} border mb-6 backdrop-blur-xl`}>
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <div className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full ${isDark ? 'bg-[#39ADE3]/10 border-[#39ADE3]/20' : 'bg-blue-50 border-blue-200'} border mb-4 sm:mb-6 backdrop-blur-xl`}>
               <Target className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
               <span className={`text-xs font-bold ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} uppercase tracking-wider`}>{t.services.badge}</span>
             </div>
-            <h2 className={`text-5xl lg:text-6xl font-black mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.services.title}</h2>
-            <p className={`text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto`}>{t.services.subtitle}</p>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 ${isDark ? 'text-white' : 'text-slate-900'} px-4`}>{t.services.title}</h2>
+            <p className={`text-base sm:text-lg lg:text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto px-4`}>{t.services.subtitle}</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {t.services.items.map((service, index) => {
               const Icon = serviceIcons[['automation', 'formation', 'audit'][index]];
               return (
                 <div key={index} className="group relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 opacity-0 group-hover:opacity-100 rounded-3xl blur-2xl transition-opacity duration-500"></div>
-                  <Card className={`relative h-full ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-2xl p-8 hover:border-[#39ADE3]/50 rounded-3xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-[#39ADE3]/20 overflow-hidden`}>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#39ADE3]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-[100px]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 opacity-0 group-hover:opacity-100 rounded-2xl sm:rounded-3xl blur-2xl transition-opacity duration-500"></div>
+                  <Card className={`relative h-full ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-lg'} backdrop-blur-2xl p-6 sm:p-8 hover:border-[#39ADE3]/50 rounded-2xl sm:rounded-3xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-[#39ADE3]/20 overflow-hidden`}>
+                    <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-[#39ADE3]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-[100px]"></div>
                     
-                    <div className="relative space-y-6">
-                      <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                        <Icon className={`w-8 h-8 ${isDark ? 'text-[#00FFD1] group-hover:text-[#39ADE3]' : 'text-[#0774B6] group-hover:text-[#39ADE3]'} transition-colors duration-500`} />
+                    <div className="relative space-y-4 sm:space-y-6">
+                      <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        <Icon className={`w-6 h-6 sm:w-8 sm:h-8 ${isDark ? 'text-[#00FFD1] group-hover:text-[#39ADE3]' : 'text-[#0774B6] group-hover:text-[#39ADE3]'} transition-colors duration-500`} />
                       </div>
-                      <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{service.title}</h3>
-                      <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed`}>{service.description}</p>
-                      <div className="pt-4">
-                        {/*<div className={`inline-flex items-center gap-2 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} group-hover:gap-4 transition-all duration-300 cursor-pointer font-bold`}>
-                          <span className="text-sm uppercase tracking-wider">{t.services.learnMore}</span>
-                          <ChevronRight className="w-5 h-5" />
+                      <h3 className={`text-lg sm:text-xl lg:text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{service.title}</h3>
+                      <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed text-sm sm:text-base`}>{service.description}</p>
+                      <div className="pt-2 sm:pt-4">
+                        {/*<div className={`inline-flex items-center gap-2 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} group-hover:gap-4 transition-all duration-300 cursor-pointer font-bold text-sm`}>
+                          <span className="uppercase tracking-wider">{t.services.learnMore}</span>
+                          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                         </div>*/}
                       </div>
                     </div>

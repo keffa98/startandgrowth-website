@@ -520,40 +520,40 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 lg:px-20 relative">
+      <section id="contact" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-20">
-            <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full ${isDark ? 'bg-[#00FFD1]/10 border-[#00FFD1]/20' : 'bg-blue-50 border-blue-200'} border mb-6 backdrop-blur-xl`}>
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <div className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full ${isDark ? 'bg-[#00FFD1]/10 border-[#00FFD1]/20' : 'bg-blue-50 border-blue-200'} border mb-4 sm:mb-6 backdrop-blur-xl`}>
               <Users className={`w-4 h-4 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} />
               <span className={`text-xs font-bold ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} uppercase tracking-wider`}>{t.contact.badge}</span>
             </div>
-            <h2 className={`text-5xl lg:text-6xl font-black mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.contact.title}</h2>
-            <p className={`text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto`}>{t.contact.subtitle}</p>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 ${isDark ? 'text-white' : 'text-slate-900'} px-4`}>{t.contact.title}</h2>
+            <p className={`text-base sm:text-lg lg:text-xl ${isDark ? 'text-white/60' : 'text-slate-600'} max-w-2xl mx-auto px-4`}>{t.contact.subtitle}</p>
           </div>
 
-          <Card className={`relative ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-2xl'} backdrop-blur-2xl p-12 md:p-16 overflow-hidden rounded-3xl`}>
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 blur-3xl rounded-full"></div>
+          <Card className={`relative ${isDark ? 'bg-[#12141A]/80 border-white/10' : 'bg-white border-slate-200 shadow-2xl'} backdrop-blur-2xl p-6 sm:p-10 md:p-16 overflow-hidden rounded-2xl sm:rounded-3xl`}>
+            <div className="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 blur-3xl rounded-full"></div>
             
-            <div className="relative space-y-10 text-center">
+            <div className="relative space-y-6 sm:space-y-8 lg:space-y-10 text-center">
               {/* Calendar Icon */}
               <div className="flex justify-center">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center">
-                  <svg className={`w-10 h-10 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#39ADE3]/20 to-[#00FFD1]/10 flex items-center justify-center">
+                  <svg className={`w-8 h-8 sm:w-10 sm:h-10 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <h3 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{t.contact.description}</h3>
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className={`text-xl sm:text-2xl lg:text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} px-2`}>{t.contact.description}</h3>
               </div>
 
               {/* Features List */}
-              <div className={`grid md:grid-cols-2 gap-4 py-8 ${isDark ? 'text-white/80' : 'text-slate-700'}`}>
+              <div className={`grid sm:grid-cols-2 gap-3 sm:gap-4 py-6 sm:py-8 ${isDark ? 'text-white/80' : 'text-slate-700'}`}>
                 {t.contact.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-left">
-                    <CheckCircle className={`w-5 h-5 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} flex-shrink-0`} />
-                    <span className="text-base">{feature}</span>
+                  <div key={idx} className="flex items-start gap-3 text-left">
+                    <CheckCircle className={`w-5 h-5 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} flex-shrink-0 mt-0.5`} />
+                    <span className="text-sm sm:text-base">{feature}</span>
                   </div>
                 ))}
               </div>

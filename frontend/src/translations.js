@@ -107,7 +107,20 @@ export const translations = {
       quickLinks: 'Quick Links',
       services: 'Services',
       servicesItems: ['AI Automation', 'AI Training', 'Performance Audit'],
-      copyright: '© 2022 - {YEAR} Startandgrowth. All rights reserved. Innovate,Automate and Scale.'
+      copyright: '© 2025 Startandgrowth. All rights reserved. Engineered for the future.'
+    },
+    event: {
+      badge: 'Exclusive Event',
+      title: 'AI FACTORY',
+      subtitle: 'COTONOU 2026',
+      tagline: 'Artificial Intelligence for performance and digital sovereignty.',
+      description: 'An exclusive afterwork to connect technical expertise with economic growth.',
+      cta: 'Learn More About AI Factory',
+      teaser: {
+        title: 'Join Us at AI FACTORY',
+        description: 'Discover how AI is shaping the future of African digital sovereignty',
+        date: 'Cotonou 2026'
+      }
     }
   },
   fr: {

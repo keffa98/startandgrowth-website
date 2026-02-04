@@ -563,12 +563,13 @@ const Home = () => {
                 href="https://calendar.app.google/6oxKVAdMUCvppBzXA" 
                 target="_blank" 
                 rel="noopener noreferrer"
+                className="w-full"
               >
                 <Button 
-                  className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-black px-12 h-16 rounded-full text-lg w-full md:w-auto shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 group uppercase tracking-wider"
+                  className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-black px-6 sm:px-8 md:px-12 h-14 sm:h-16 rounded-full text-sm sm:text-base md:text-lg w-full shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 group uppercase tracking-wide sm:tracking-wider"
                 >
-                  <span>{t.contact.cta}</span>
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                  <span className="line-clamp-1">{t.contact.cta}</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 flex-shrink-0 group-hover:translate-x-2 transition-transform duration-300" />
                 </Button>
               </a>
 

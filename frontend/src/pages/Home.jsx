@@ -195,18 +195,20 @@ const Home = () => {
 
       {/* Header */}
       <header className={`fixed top-0 w-full z-50 backdrop-blur-2xl ${isDark ? 'bg-[#0A0B0F]/80 border-white/5' : 'bg-white/80 border-slate-200/50'} border-b transition-colors duration-500`}>
-        <div className="container mx-auto px-6 lg:px-20 h-20 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="relative">
               <div className="absolute inset-0 bg-[#39ADE3] blur-xl opacity-50 group-hover:opacity-100 transition-opacity rounded-full"></div>
               <img 
                 src="https://customer-assets.emergentagent.com/job_startgrowthlab/artifacts/1vv64623_IMG_4950.PNG" 
                 alt="Start & Growth Logo" 
-                className="h-10 object-contain relative z-10 transition-transform duration-500 group-hover:scale-110"
+                className="h-8 sm:h-10 object-contain relative z-10 transition-transform duration-500 group-hover:scale-110"
               />
             </div>
           </div>
-          <nav className="hidden md:flex items-center gap-10">
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-10">
             {[t.nav.services, t.nav.portfolio, t.nav.benefits, t.nav.contact].map((item, idx) => (
               <a 
                 key={idx}
@@ -218,15 +220,16 @@ const Home = () => {
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
+          
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className={`px-4 h-10 rounded-full font-semibold text-sm transition-all duration-300 ${
+              className={`px-3 sm:px-4 h-10 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
                 isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              {language === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}
+              {language === 'en' ? '🇫🇷' : '🇬🇧'}
             </button>
             
             {/* Theme Toggle */}
@@ -239,13 +242,47 @@ const Home = () => {
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             
-            <a href="#contact">
-              <Button className="bg-gradient-to-r from-[#0774B6] to-[#39ADE3] text-white hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-6 h-11 rounded-full shadow-lg shadow-[#0774B6]/30 hover:shadow-[#00FFD1]/40 transition-all duration-300 hover:scale-105 border border-white/10">
+            {/* Desktop CTA */}
+            <a href="#contact" className="hidden sm:block">
+              <Button className="bg-gradient-to-r from-[#0774B6] to-[#39ADE3] text-white hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-4 lg:px-6 h-11 rounded-full shadow-lg shadow-[#0774B6]/30 hover:shadow-[#00FFD1]/40 transition-all duration-300 hover:scale-105 border border-white/10 text-sm">
                 {t.nav.getStarted}
               </Button>
             </a>
+            
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`md:hidden w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className={`md:hidden ${isDark ? 'bg-[#0A0B0F]/95' : 'bg-white/95'} backdrop-blur-xl border-t ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+            <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              {[t.nav.services, t.nav.portfolio, t.nav.benefits, t.nav.contact].map((item, idx) => (
+                <a 
+                  key={idx}
+                  href={`#${['services', 'portfolio', 'benefits', 'contact'][idx]}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`${isDark ? 'text-white hover:text-[#00FFD1]' : 'text-slate-700 hover:text-[#0774B6]'} transition-all duration-300 text-base font-semibold uppercase tracking-wider py-2`}
+                >
+                  {item}
+                </a>
+              ))}
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                <Button className="bg-gradient-to-r from-[#0774B6] to-[#39ADE3] text-white hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-6 h-12 rounded-full w-full shadow-lg shadow-[#0774B6]/30 transition-all duration-300 mt-4">
+                  {t.nav.getStarted}
+                </Button>
+              </a>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}

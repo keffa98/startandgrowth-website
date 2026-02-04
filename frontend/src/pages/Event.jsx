@@ -1,215 +1,40 @@
-import React from 'react';
-import { ArrowRight, Target, Calendar, Users, Rocket, TrendingUp, Award, Linkedin, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Target, Calendar, Users, Rocket, TrendingUp, Award, Linkedin, Mail, Brain, Code, BarChart, Zap, Sparkles, Sun, Moon } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { useTheme, useLanguage } from '../context/AppContext';
 import { Link } from 'react-router-dom';
+import { translations } from '../translations';
 
 const Event = () => {
-  const { theme } = useTheme();
-  const { language } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
   const isDark = theme === 'dark';
+  const t = translations[language];
 
-  const eventData = {
-    fr: {
-      hero: {
-        title: 'AI FACTORY : COTONOU 2026',
-        subtitle: 'L\'Intelligence Artificielle au service de la performance et de la souveraineté numérique.',
-        description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
-        format: 'Format : Afterwork Stratégique | Lieu : Cotonou | Cible : Décideurs & Talents Tech'
-      },
-      why: {
-        title: 'Pourquoi l\'IA Factory ?',
-        intro: 'L\'Afrique ne doit plus seulement être consommatrice, mais architecte de sa révolution numérique. Pour bâtir les champions de demain (nos futurs GAFAM), deux leviers sont indispensables :',
-        points: [
-          {
-            title: 'La Scalabilité',
-            desc: 'Passer de l\'artisanat au déploiement industriel (DevOps & Automation).'
-          },
-          {
-            title: 'La Performance',
-            desc: 'Transformer la donnée en profit réel et en optimisation opérationnelle.'
-          },
-          {
-            title: 'La Souveraineté',
-            desc: 'Maîtriser nos outils pour garantir notre indépendance numérique.'
-          }
-        ]
-      },
-      program: {
-        title: '2h30 pour changer de perspective',
-        intro: 'L\'événement est conçu pour être un condensé d\'inspiration et de pragmatisme.',
-        items: [
-          {
-            icon: '⚡',
-            title: 'Lightning Talk (45 min)',
-            points: [
-              'IA & ROI : Comment l\'IA booste concrètement le chiffre d\'affaires.',
-              'Démos : Cas d\'usages adaptés au marché béninois (Logistique, Fintech, AgriTech).',
-              'Souveraineté : Infrastructures et Cloud, les bases de la liberté.'
-            ]
-          },
-          {
-            icon: '🤝',
-            title: 'Networking Sélectif',
-            points: [
-              'Mise en relation entre porteurs de projets, investisseurs et experts.'
-            ]
-          },
-          {
-            icon: '🎙️',
-            title: 'Capsules "Future of Africa"',
-            points: [
-              'Enregistrement de podcasts live pour documenter la vision des leaders tech présents.'
-            ]
-          }
-        ]
-      },
-      benefits: {
-        title: 'Ce que vous allez en retirer',
-        decision: {
-          title: 'Pour les Décideurs (CEOs/CMOs)',
-          items: [
-            'Comprendre le ROI réel de l\'IA.',
-            'Identifier les leviers de réduction de coûts.',
-            'Accéder à un réseau d\'experts qualifiés.'
-          ]
-        },
-        experts: {
-          title: 'Pour les Experts (CTOs/Devs)',
-          items: [
-            'Découvrir les standards DevOps internationaux.',
-            'Échanger sur les enjeux de la data locale.',
-            'Contribuer à la souveraineté du pays.'
-          ]
-        }
-      },
-      initiator: {
-        title: 'L\'Initiateur',
-        subtitle: 'Une expertise internationale au service du local',
-        name: 'Kéffa AGBOTON',
-        bio: 'Ingénieur DevOps & Performance avec 7 ans d\'expérience internationale. Consultant en automatisation et IA, il accompagne les entreprises dans leur transformation vers des systèmes hautement scalables. Membre actif de la diaspora engagé pour l\'éclosion de champions tech africains.'
-      },
-      ecosystem: {
-        title: 'Écosystème & Synergies',
-        subtitle: 'Une dynamique collective',
-        intro: 'Cet événement aspire à fédérer les forces vives de l\'écosystème :',
-        items: [
-          'Les communautés de développeurs locales.',
-          'Les réseaux d\'accompagnement à l\'entrepreneuriat numérique.',
-          'Les institutions de promotion des PME et de l\'investissement.'
-        ],
-        note: '(En cours de structuration avec les acteurs majeurs du secteur).'
-      },
-      cta: {
-        title: 'Restez informés ou rejoignez l\'aventure',
-        subtitle: 'Vous souhaitez participer, devenir partenaire ou intervenir ?',
-        button: 'Contactez-moi'
-      }
-    },
-    en: {
-      hero: {
-        title: 'AI FACTORY: COTONOU 2026',
-        subtitle: 'Artificial Intelligence for performance and digital sovereignty.',
-        description: 'An exclusive afterwork to connect technical expertise with economic growth.',
-        format: 'Format: Strategic Afterwork | Location: Cotonou | Target: Decision Makers & Tech Talents'
-      },
-      why: {
-        title: 'Why AI Factory?',
-        intro: 'Africa must no longer just be a consumer, but an architect of its digital revolution. To build tomorrow\'s champions (our future GAFAMs), two levers are essential:',
-        points: [
-          {
-            title: 'Scalability',
-            desc: 'Moving from artisanal to industrial deployment (DevOps & Automation).'
-          },
-          {
-            title: 'Performance',
-            desc: 'Transforming data into real profit and operational optimization.'
-          },
-          {
-            title: 'Sovereignty',
-            desc: 'Mastering our tools to guarantee our digital independence.'
-          }
-        ]
-      },
-      program: {
-        title: '2.5 hours to change perspective',
-        intro: 'The event is designed to be a condensed mix of inspiration and pragmatism.',
-        items: [
-          {
-            icon: '⚡',
-            title: 'Lightning Talk (45 min)',
-            points: [
-              'AI & ROI: How AI concretely boosts revenue.',
-              'Demos: Use cases adapted to the Beninese market (Logistics, Fintech, AgriTech).',
-              'Sovereignty: Infrastructure and Cloud, the foundations of freedom.'
-            ]
-          },
-          {
-            icon: '🤝',
-            title: 'Selective Networking',
-            points: [
-              'Connecting project leaders, investors, and experts.'
-            ]
-          },
-          {
-            icon: '🎙️',
-            title: '"Future of Africa" Capsules',
-            points: [
-              'Live podcast recording to document the vision of tech leaders present.'
-            ]
-          }
-        ]
-      },
-      benefits: {
-        title: 'What you will gain',
-        decision: {
-          title: 'For Decision Makers (CEOs/CMOs)',
-          items: [
-            'Understand the real ROI of AI.',
-            'Identify cost reduction levers.',
-            'Access a network of qualified experts.'
-          ]
-        },
-        experts: {
-          title: 'For Experts (CTOs/Devs)',
-          items: [
-            'Discover international DevOps standards.',
-            'Exchange on local data challenges.',
-            'Contribute to the country\'s sovereignty.'
-          ]
-        }
-      },
-      initiator: {
-        title: 'The Initiator',
-        subtitle: 'International expertise serving local needs',
-        name: 'Kéffa AGBOTON',
-        bio: 'DevOps & Performance Engineer with 7 years of international experience. Consultant in automation and AI, he supports companies in their transformation towards highly scalable systems. Active member of the diaspora committed to the emergence of African tech champions.'
-      },
-      ecosystem: {
-        title: 'Ecosystem & Synergies',
-        subtitle: 'A collective dynamic',
-        intro: 'This event aspires to federate the ecosystem\'s vital forces:',
-        items: [
-          'Local developer communities.',
-          'Digital entrepreneurship support networks.',
-          'SME promotion and investment institutions.'
-        ],
-        note: '(Currently being structured with major sector players).'
-      },
-      cta: {
-        title: 'Stay informed or join the adventure',
-        subtitle: 'Would you like to participate, become a partner, or speak?',
-        button: 'Contact Me'
-      }
-    }
-  };
+  const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const content = eventData[language];
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const content = t.eventPage;
 
   return (
     <div className={`min-h-screen ${isDark ? 'bg-[#0A0B0F] text-white' : 'bg-white text-slate-900'} relative overflow-hidden transition-colors duration-500`}>
-      {/* Background Elements */}
+      {/* Advanced animated background - same as homepage */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className={`absolute inset-0 ${isDark ? 'opacity-40' : 'opacity-20'}`}>
           <div 
@@ -220,23 +45,171 @@ const Event = () => {
               left: '10%'
             }}
           />
+          <div 
+            className="absolute w-[600px] h-[600px] rounded-full blur-3xl animate-mesh-2"
+            style={{
+              background: `radial-gradient(circle, ${isDark ? 'rgba(0,255,209,0.25)' : 'rgba(0,255,209,0.12)'} 0%, transparent 70%)`,
+              bottom: '20%',
+              right: '15%'
+            }}
+          />
+          <div 
+            className="absolute w-[700px] h-[700px] rounded-full blur-3xl animate-mesh-3"
+            style={{
+              background: `radial-gradient(circle, ${isDark ? 'rgba(7,116,182,0.2)' : 'rgba(7,116,182,0.1)'} 0%, transparent 70%)`,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)'
+            }}
+          />
         </div>
+        
+        {/* Floating Icons and Shapes */}
+        <div className={`absolute inset-0 ${isDark ? 'opacity-10' : 'opacity-8'}`}>
+          {/* AI Brain Icon */}
+          <div className="absolute top-[15%] left-[8%] animate-float-slow">
+            <Brain className={`w-16 h-16 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* Code Icon */}
+          <div className="absolute top-[25%] right-[12%] animate-float-delayed" style={{ animationDelay: '1s' }}>
+            <Code className={`w-20 h-20 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+          
+          {/* Rocket Icon */}
+          <div className="absolute top-[60%] left-[15%] animate-float-slow" style={{ animationDelay: '2s' }}>
+            <Rocket className={`w-14 h-14 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* Bar Chart Icon */}
+          <div className="absolute bottom-[20%] right-[18%] animate-float-delayed" style={{ animationDelay: '1.5s' }}>
+            <BarChart className={`w-18 h-18 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+          
+          {/* Zap Icon */}
+          <div className="absolute top-[40%] right-[8%] animate-float-slow" style={{ animationDelay: '0.5s' }}>
+            <Zap className={`w-12 h-12 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* Target Icon */}
+          <div className="absolute bottom-[35%] left-[10%] animate-float-delayed" style={{ animationDelay: '2.5s' }}>
+            <Target className={`w-16 h-16 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+          
+          {/* Sparkles Icon */}
+          <div className="absolute top-[70%] right-[25%] animate-float-slow" style={{ animationDelay: '1.2s' }}>
+            <Sparkles className={`w-14 h-14 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
+          </div>
+          
+          {/* TrendingUp Icon */}
+          <div className="absolute top-[50%] left-[5%] animate-float-delayed" style={{ animationDelay: '3s' }}>
+            <TrendingUp className={`w-18 h-18 ${isDark ? 'text-[#00FFD1]' : 'text-[#39ADE3]'}`} />
+          </div>
+        </div>
+        
+        {/* Geometric Shapes */}
+        <div className={`absolute inset-0 ${isDark ? 'opacity-5' : 'opacity-4'}`}>
+          {/* Circles */}
+          <div className="absolute top-[20%] right-[20%] w-32 h-32 border-2 border-[#39ADE3] rounded-full animate-spin-slow"></div>
+          <div className="absolute bottom-[30%] left-[25%] w-24 h-24 border-2 border-[#00FFD1] rounded-full animate-pulse-slow"></div>
+          
+          {/* Squares */}
+          <div className="absolute top-[45%] right-[30%] w-20 h-20 border-2 border-[#39ADE3] animate-rotate-slow"></div>
+          <div className="absolute bottom-[15%] left-[35%] w-28 h-28 border-2 border-[#00FFD1] animate-rotate-reverse"></div>
+          
+          {/* Triangles */}
+          <div className="absolute top-[35%] left-[20%] w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[35px] border-b-[#39ADE3] animate-float-slow"></div>
+          <div className="absolute bottom-[40%] right-[15%] w-0 h-0 border-l-[25px] border-l-transparent border-r-[25px] border-r-transparent border-b-[40px] border-b-[#00FFD1] animate-float-delayed" style={{ animationDelay: '2s' }}></div>
+          
+          {/* Hexagons */}
+          <div className="absolute top-[55%] right-[40%] w-16 h-16 animate-pulse-slow" style={{ animationDelay: '1s' }}>
+            <svg viewBox="0 0 100 100" className={`w-full h-full ${isDark ? 'stroke-[#39ADE3]' : 'stroke-[#0774B6]'}`} fill="none" strokeWidth="2">
+              <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" />
+            </svg>
+          </div>
+          <div className="absolute bottom-[25%] left-[40%] w-20 h-20 animate-rotate-slow">
+            <svg viewBox="0 0 100 100" className={`w-full h-full ${isDark ? 'stroke-[#00FFD1]' : 'stroke-[#39ADE3]'}`} fill="none" strokeWidth="2">
+              <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" />
+            </svg>
+          </div>
+        </div>
+        
+        {/* Grid Pattern */}
+        <div 
+          className={`absolute inset-0 ${isDark ? 'opacity-10' : 'opacity-5'}`}
+          style={{
+            backgroundImage: `
+              linear-gradient(${isDark ? 'rgba(57,173,227,0.1)' : 'rgba(57,173,227,0.05)'} 1px, transparent 1px),
+              linear-gradient(90deg, ${isDark ? 'rgba(57,173,227,0.1)' : 'rgba(57,173,227,0.05)'} 1px, transparent 1px)
+            `,
+            backgroundSize: '100px 100px',
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
+        />
+        
+        {/* Mouse Follow Effect */}
+        <div 
+          className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-20 pointer-events-none transition-all duration-300"
+          style={{
+            background: `radial-gradient(circle, ${isDark ? 'rgba(0,255,209,0.4)' : 'rgba(0,255,209,0.2)'} 0%, transparent 70%)`,
+            left: mousePosition.x - 250,
+            top: mousePosition.y - 250
+          }}
+        />
       </div>
 
+      {/* Header with Theme/Language Toggle */}
+      <header className={`fixed top-0 w-full z-50 backdrop-blur-2xl ${isDark ? 'bg-[#0A0B0F]/80 border-white/5' : 'bg-white/80 border-slate-200/50'} border-b transition-colors duration-500`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20 h-20 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 group cursor-pointer">
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#39ADE3] blur-xl opacity-50 group-hover:opacity-100 transition-opacity rounded-full"></div>
+              <img 
+                src="https://customer-assets.emergentagent.com/job_startgrowthlab/artifacts/1vv64623_IMG_4950.PNG" 
+                alt="Start & Growth Logo" 
+                className="h-8 sm:h-10 object-contain relative z-10 transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+          </Link>
+          
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={`px-3 sm:px-4 h-10 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
+                isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {language === 'en' ? '🇫🇷' : '🇬🇧'}
+            </button>
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
       {/* Back to Home */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-20 pt-32 pb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-20 pt-28 pb-4 relative z-10">
         <Link to="/" className={`inline-flex items-center gap-2 ${isDark ? 'text-white/70 hover:text-[#00FFD1]' : 'text-slate-600 hover:text-[#0774B6]'} transition-colors`}>
           <ArrowRight className="w-4 h-4 rotate-180" />
-          <span className="text-sm font-semibold">Back to Home</span>
+          <span className="text-sm font-semibold">{content.backToHome}</span>
         </Link>
       </div>
 
       {/* Hero Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-20 relative z-10">
         <div className="container mx-auto max-w-5xl text-center">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#00FFD1]/10 border border-[#00FFD1]/20 mb-6 backdrop-blur-xl">
             <Calendar className="w-4 h-4 text-[#00FFD1]" />
-            <span className="text-xs font-bold text-[#00FFD1] uppercase tracking-wider">Exclusive Event</span>
+            <span className="text-xs font-bold text-[#00FFD1] uppercase tracking-wider">{content.hero.badge}</span>
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#0774B6] via-[#39ADE3] to-[#00FFD1]">
@@ -258,7 +231,7 @@ const Event = () => {
       </section>
 
       {/* Why Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10">
         <div className="container mx-auto max-w-5xl">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-8 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {content.why.title}
@@ -279,7 +252,7 @@ const Event = () => {
       </section>
 
       {/* Program Section */}
-      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative ${isDark ? 'bg-[#0a0a0a]' : 'bg-slate-50'}`}>
+      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10 ${isDark ? 'bg-[#0a0a0a]/50' : 'bg-slate-50/50'} backdrop-blur-sm`}>
         <div className="container mx-auto max-w-5xl">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {content.program.title}
@@ -312,7 +285,7 @@ const Event = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10">
         <div className="container mx-auto max-w-5xl">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-12 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {content.benefits.title}
@@ -347,7 +320,7 @@ const Event = () => {
       </section>
 
       {/* Initiator Section */}
-      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative ${isDark ? 'bg-[#0a0a0a]' : 'bg-slate-50'}`}>
+      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10 ${isDark ? 'bg-[#0a0a0a]/50' : 'bg-slate-50/50'} backdrop-blur-sm`}>
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-8">
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
@@ -368,7 +341,7 @@ const Event = () => {
       </section>
 
       {/* Ecosystem Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10">
         <div className="container mx-auto max-w-4xl">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {content.ecosystem.title}
@@ -396,7 +369,7 @@ const Event = () => {
       </section>
 
       {/* CTA Section */}
-      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative ${isDark ? 'bg-[#0a0a0a]' : 'bg-slate-50'}`}>
+      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10 ${isDark ? 'bg-[#0a0a0a]/50' : 'bg-slate-50/50'} backdrop-blur-sm`}>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {content.cta.title}

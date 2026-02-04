@@ -65,7 +65,7 @@ const Event = () => {
         </div>
         
         {/* Floating Icons and Shapes */}
-        <div className={`absolute inset-0 ${isDark ? 'opacity-10' : 'opacity-8'}`}>
+        <div className={`absolute inset-0 ${isDark ? 'opacity-10' : 'opacity-[0.04]'}`}>
           {/* AI Brain Icon */}
           <div className="absolute top-[15%] left-[8%] animate-float-slow">
             <Brain className={`w-16 h-16 ${isDark ? 'text-[#39ADE3]' : 'text-[#0774B6]'}`} />
@@ -108,7 +108,7 @@ const Event = () => {
         </div>
         
         {/* Geometric Shapes */}
-        <div className={`absolute inset-0 ${isDark ? 'opacity-5' : 'opacity-4'}`}>
+        <div className={`absolute inset-0 ${isDark ? 'opacity-5' : 'opacity-[0.02]'}`}>
           {/* Circles */}
           <div className="absolute top-[20%] right-[20%] w-32 h-32 border-2 border-[#39ADE3] rounded-full animate-spin-slow"></div>
           <div className="absolute bottom-[30%] left-[25%] w-24 h-24 border-2 border-[#00FFD1] rounded-full animate-pulse-slow"></div>

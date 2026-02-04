@@ -121,6 +121,103 @@ export const translations = {
         description: 'Discover how AI is shaping the future of African digital sovereignty',
         date: 'Cotonou 2026'
       }
+    },
+    eventPage: {
+      backToHome: 'Back to Home',
+      hero: {
+        badge: 'Exclusive Event',
+        title: 'AI FACTORY: COTONOU 2026',
+        subtitle: 'Artificial Intelligence for performance and digital sovereignty.',
+        description: 'An exclusive afterwork to connect technical expertise with economic growth.',
+        format: 'Format: Strategic Afterwork | Location: Cotonou | Target: Decision Makers & Tech Talents'
+      },
+      why: {
+        title: 'Why AI Factory?',
+        intro: 'Africa must no longer just be a consumer, but an architect of its digital revolution. To build tomorrow\'s champions (our future GAFAMs), two levers are essential:',
+        points: [
+          {
+            title: 'Scalability',
+            desc: 'Moving from artisanal to industrial deployment (DevOps & Automation).'
+          },
+          {
+            title: 'Performance',
+            desc: 'Transforming data into real profit and operational optimization.'
+          },
+          {
+            title: 'Sovereignty',
+            desc: 'Mastering our tools to guarantee our digital independence.'
+          }
+        ]
+      },
+      program: {
+        title: '2.5 hours to change perspective',
+        intro: 'The event is designed to be a condensed mix of inspiration and pragmatism.',
+        items: [
+          {
+            icon: '⚡',
+            title: 'Lightning Talk (45 min)',
+            points: [
+              'AI & ROI: How AI concretely boosts revenue.',
+              'Demos: Use cases adapted to the Beninese market (Logistics, Fintech, AgriTech).',
+              'Sovereignty: Infrastructure and Cloud, the foundations of freedom.'
+            ]
+          },
+          {
+            icon: '🤝',
+            title: 'Selective Networking',
+            points: [
+              'Connecting project leaders, investors, and experts.'
+            ]
+          },
+          {
+            icon: '🎙️',
+            title: '"Future of Africa" Capsules',
+            points: [
+              'Live podcast recording to document the vision of tech leaders present.'
+            ]
+          }
+        ]
+      },
+      benefits: {
+        title: 'What you will gain',
+        decision: {
+          title: 'For Decision Makers (CEOs/CMOs)',
+          items: [
+            'Understand the real ROI of AI.',
+            'Identify cost reduction levers.',
+            'Access a network of qualified experts.'
+          ]
+        },
+        experts: {
+          title: 'For Experts (CTOs/Devs)',
+          items: [
+            'Discover international DevOps standards.',
+            'Exchange on local data challenges.',
+            'Contribute to the country\'s sovereignty.'
+          ]
+        }
+      },
+      initiator: {
+        title: 'The Initiator',
+        subtitle: 'International expertise serving local needs',
+        name: 'Kéffa AGBOTON',
+        bio: 'DevOps & Performance Engineer with 7 years of international experience. Consultant in automation and AI, he supports companies in their transformation towards highly scalable systems. Active member of the diaspora committed to the emergence of African tech champions.'
+      },
+      ecosystem: {
+        title: 'Ecosystem & Synergies',
+        subtitle: 'A collective dynamic',
+        intro: 'This event aspires to federate the ecosystem\'s vital forces:',
+        items: [
+          'Local developer communities.',
+          'Digital entrepreneurship support networks.',
+          'SME promotion and investment institutions.'
+        ],
+        note: '(Currently being structured with major sector players).'
+      },
+      cta: {
+        title: 'Stay informed or join the adventure',
+        subtitle: 'Would you like to participate, become a partner, or speak?'
+      }
     }
   },
   fr: {

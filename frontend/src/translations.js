@@ -342,6 +342,103 @@ export const translations = {
         description: 'Découvrez comment l\'IA façonne l\'avenir de la souveraineté numérique africaine',
         date: 'Cotonou 2026'
       }
+    },
+    eventPage: {
+      backToHome: 'Retour à l\'Accueil',
+      hero: {
+        badge: 'Événement Exclusif',
+        title: 'AI FACTORY : COTONOU 2026',
+        subtitle: 'L\'Intelligence Artificielle au service de la performance et de la souveraineté numérique.',
+        description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
+        format: 'Format : Afterwork Stratégique | Lieu : Cotonou | Cible : Décideurs & Talents Tech'
+      },
+      why: {
+        title: 'Pourquoi l\'IA Factory ?',
+        intro: 'L\'Afrique ne doit plus seulement être consommatrice, mais architecte de sa révolution numérique. Pour bâtir les champions de demain (nos futurs GAFAM), deux leviers sont indispensables :',
+        points: [
+          {
+            title: 'La Scalabilité',
+            desc: 'Passer de l\'artisanat au déploiement industriel (DevOps & Automation).'
+          },
+          {
+            title: 'La Performance',
+            desc: 'Transformer la donnée en profit réel et en optimisation opérationnelle.'
+          },
+          {
+            title: 'La Souveraineté',
+            desc: 'Maîtriser nos outils pour garantir notre indépendance numérique.'
+          }
+        ]
+      },
+      program: {
+        title: '2h30 pour changer de perspective',
+        intro: 'L\'événement est conçu pour être un condensé d\'inspiration et de pragmatisme.',
+        items: [
+          {
+            icon: '⚡',
+            title: 'Lightning Talk (45 min)',
+            points: [
+              'IA & ROI : Comment l\'IA booste concrètement le chiffre d\'affaires.',
+              'Démos : Cas d\'usages adaptés au marché béninois (Logistique, Fintech, AgriTech).',
+              'Souveraineté : Infrastructures et Cloud, les bases de la liberté.'
+            ]
+          },
+          {
+            icon: '🤝',
+            title: 'Networking Sélectif',
+            points: [
+              'Mise en relation entre porteurs de projets, investisseurs et experts.'
+            ]
+          },
+          {
+            icon: '🎙️',
+            title: 'Capsules "Future of Africa"',
+            points: [
+              'Enregistrement de podcasts live pour documenter la vision des leaders tech présents.'
+            ]
+          }
+        ]
+      },
+      benefits: {
+        title: 'Ce que vous allez en retirer',
+        decision: {
+          title: 'Pour les Décideurs (CEOs/CMOs)',
+          items: [
+            'Comprendre le ROI réel de l\'IA.',
+            'Identifier les leviers de réduction de coûts.',
+            'Accéder à un réseau d\'experts qualifiés.'
+          ]
+        },
+        experts: {
+          title: 'Pour les Experts (CTOs/Devs)',
+          items: [
+            'Découvrir les standards DevOps internationaux.',
+            'Échanger sur les enjeux de la data locale.',
+            'Contribuer à la souveraineté du pays.'
+          ]
+        }
+      },
+      initiator: {
+        title: 'L\'Initiateur',
+        subtitle: 'Une expertise internationale au service du local',
+        name: 'Kéffa AGBOTON',
+        bio: 'Ingénieur DevOps & Performance avec 7 ans d\'expérience internationale. Consultant en automatisation et IA, il accompagne les entreprises dans leur transformation vers des systèmes hautement scalables. Membre actif de la diaspora engagé pour l\'éclosion de champions tech africains.'
+      },
+      ecosystem: {
+        title: 'Écosystème & Synergies',
+        subtitle: 'Une dynamique collective',
+        intro: 'Cet événement aspire à fédérer les forces vives de l\'écosystème :',
+        items: [
+          'Les communautés de développeurs locales.',
+          'Les réseaux d\'accompagnement à l\'entrepreneuriat numérique.',
+          'Les institutions de promotion des PME et de l\'investissement.'
+        ],
+        note: '(En cours de structuration avec les acteurs majeurs du secteur).'
+      },
+      cta: {
+        title: 'Restez informés ou rejoignez l\'aventure',
+        subtitle: 'Vous souhaitez participer, devenir partenaire ou intervenir ?'
+      }
     }
   }
 };

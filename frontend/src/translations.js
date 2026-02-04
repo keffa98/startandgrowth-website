@@ -237,7 +237,7 @@ export const translations = {
       badge: 'Événement Exclusif',
       title: 'AI FACTORY',
       subtitle: 'COTONOU 2026',
-      tagline: 'Intelligence Artificielle pour la performance et la souveraineté numérique.',
+      tagline: 'Intelligence Artificielle au service de la performance et de la souveraineté numérique.',
       description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
       cta: 'En Savoir Plus sur AI Factory',
       teaser: {

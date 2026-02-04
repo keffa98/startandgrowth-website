@@ -18,22 +18,22 @@ export const mockData = {
   ],
   portfolio: [
     {
-      client: 'STUDIO',
+      client: 'STUDIO COO',
       industry: 'Market Research',
       description: 'Automated market research workflow that generates comprehensive reports by simply inputting a product name. Drastically reduced time and resources spent on market research with impressive accuracy and insights.',
       solution: 'AI-Powered Market Research Automation',
       result: 'Competitive edge',
       testimonial: 'We now have an automated market research workflow that generates comprehensive reports by simply inputting a product name. This has drastically reduced the time and resources we previously spent on market research, and the accuracy and insights are impressive, giving us a competitive edge, and we could not be more pleased with the results.',
-      author: 'STUDIO COO'
+      author: 'Head of Ops'
     },
     {
       client: 'Bex Care',
-      industry: 'Healthcare & Customer Service',
+      industry: 'Assurtech',
       description: 'AI chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction while significantly reducing team workload.',
       solution: 'Intelligent Customer Service Chatbot',
       result: 'Instant response',
       testimonial: 'Our client service has reached a whole new level. The chatbot handles client inquiries instantly, improving response times and enhancing overall customer satisfaction. It has significantly reduced our team workload. Their technical expertise and understanding of our business needs were crucial in making this project a success.',
-      author: 'Bex Care Team'
+      author: 'Chief Sales Officer'
     },
     {
       client: 'Dr. Dieudonnée METO',
@@ -45,11 +45,11 @@ export const mockData = {
       author: 'Doctor Dieudonnée METO'
     },
     {
-      client: 'POD',
+      client: 'POD SaaS',
       industry: 'SaaS & Technology',
       description: 'Scalable SaaS platform for online profiles and NFC tagging that allows users to easily create profiles and link them to NFC devices for seamless interactions.',
       solution: 'Custom SaaS Platform Development',
-      result: 'User-friendly platform',
+      result: 'Scalable, Customer Centric Platform',
       testimonial: 'Developing our SaaS platform for online profiles and NFC tagging has been an incredible experience. They delivered a scalable solution that allows users to easily create profiles and link them to NFC devices for seamless interactions. Problem-solving approach and attention to detail have made the platform intuitive and user-friendly, and our users are thrilled with the results.',
       author: 'POD Team'
     }

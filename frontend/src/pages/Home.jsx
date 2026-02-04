@@ -261,12 +261,16 @@ const Home = () => {
               <h1 className="text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
                 <span className={`block ${isDark ? 'text-white' : 'text-slate-900'} hover-3d`}>{t.hero.title1}</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">{t.hero.title2}</span>
-                <span className={`block ${isDark ? 'text-white' : 'text-slate-900'} hover-3d`}>{t.hero.title3}</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">{t.hero.title3}</span>
               </h1>
 
               <p className={`text-lg ${isDark ? 'text-white/70' : 'text-slate-700'} leading-relaxed max-w-xl`}>
-                {t.hero.description} <span className={`${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} font-bold text-xl`}>60%</span> {t.hero.description2}
+                {t.hero.description} {/* <span className={`${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} font-bold text-xl`}>60%</span> */} {t.hero.description2}
               </p>
+
+              <h2 className="block text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39ADE3] via-[#00FFD1] to-[#39ADE3] animate-gradient-x bg-[length:200%_auto] hover-3d">
+              Innovate, Automate and Scale.
+              </h2>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="#contact">
@@ -283,7 +287,7 @@ const Home = () => {
               </div>
 
               {/* Mini stats */}
-              <div className="grid grid-cols-3 gap-6 pt-6">
+              {/*<div className="grid grid-cols-3 gap-6 pt-6">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative text-center">
@@ -305,8 +309,8 @@ const Home = () => {
                     <div className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-600'} uppercase tracking-wider font-semibold mt-1`}>{t.hero.stats.roi}</div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>*/}
+            </div> 
 
             {/* Right Column - Bento Grid */}
             <div className="grid grid-cols-2 gap-4">
@@ -364,10 +368,10 @@ const Home = () => {
                       <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#39ADE3] group-hover:to-[#00FFD1] transition-all duration-300`}>{service.title}</h3>
                       <p className={`${isDark ? 'text-white/70' : 'text-slate-600'} leading-relaxed`}>{service.description}</p>
                       <div className="pt-4">
-                        <div className={`inline-flex items-center gap-2 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} group-hover:gap-4 transition-all duration-300 cursor-pointer font-bold`}>
+                        {/*<div className={`inline-flex items-center gap-2 ${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} group-hover:gap-4 transition-all duration-300 cursor-pointer font-bold`}>
                           <span className="text-sm uppercase tracking-wider">{t.services.learnMore}</span>
                           <ChevronRight className="w-5 h-5" />
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   </Card>
@@ -464,7 +468,7 @@ const Home = () => {
           </div>
 
           {/* ROI Showcase */}
-          <div className="relative group cursor-pointer">
+          {/*<div className="relative group cursor-pointer">
             <div className="absolute inset-0 bg-gradient-to-r from-[#39ADE3]/20 via-[#00FFD1]/20 to-[#39ADE3]/20 blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
             <div className={`relative ${isDark ? 'bg-[#12141A]/80' : 'bg-white'} backdrop-blur-2xl border-2 border-[#39ADE3]/50 p-16 rounded-3xl text-center overflow-hidden shadow-2xl`}>
               <div className="absolute inset-0 bg-gradient-to-br from-[#39ADE3]/5 to-transparent"></div>
@@ -473,7 +477,7 @@ const Home = () => {
                 <p className={`text-xl ${isDark ? 'text-white/80' : 'text-slate-700'}`}>{t.benefits.roiDesc} <span className={`${isDark ? 'text-[#00FFD1]' : 'text-[#0774B6]'} font-bold`}>{t.benefits.roiTime}</span></p>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </section>
 
@@ -530,9 +534,9 @@ const Home = () => {
                 </Button>
               </a>
 
-              <p className={`text-sm ${isDark ? 'text-white/50' : 'text-slate-500'}`}>
+              {/*<p className={`text-sm ${isDark ? 'text-white/50' : 'text-slate-500'}`}>
                 No credit card required • Cancel anytime
-              </p>
+              </p>*/}
             </div>
           </Card>
         </div>
@@ -550,12 +554,12 @@ const Home = () => {
               />
               <p className={`${isDark ? 'text-white/60' : 'text-slate-600'} leading-relaxed max-w-md`}>{t.footer.description}</p>
               <div className="flex gap-4">
-                <a href="#" className={`w-12 h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
+                {/*<a href="#" className={`w-12 h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
                   <Mail className={`w-5 h-5 ${isDark ? 'text-white' : 'text-slate-600'} group-hover:text-white transition-colors`} />
-                </a>
-                <a href="#" className={`w-12 h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
+                </a>*/}
+                {/*<a href="#" className={`w-12 h-12 ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-100 border-slate-200'} backdrop-blur-sm hover:bg-gradient-to-r hover:from-[#39ADE3] hover:to-[#00FFD1] border rounded-2xl flex items-center justify-center transition-all duration-300 group hover:scale-110`}>
                   <Linkedin className={`w-5 h-5 ${isDark ? 'text-white' : 'text-slate-600'} group-hover:text-white transition-colors`} />
-                </a>
+                </a>*/}
               </div>
             </div>
             <div className="space-y-4">
@@ -576,7 +580,7 @@ const Home = () => {
             </div>
           </div>
           <div className={`pt-8 border-t ${isDark ? 'border-white/10 text-white/50' : 'border-slate-200 text-slate-600'} text-center text-sm`}>
-            <p>{t.footer.copyright}</p>
+            <p>{t.footer.copyright.replace('{YEAR}', new Date().getFullYear())}</p>
           </div>
         </div>
       </footer>

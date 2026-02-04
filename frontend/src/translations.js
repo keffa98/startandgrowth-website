@@ -231,7 +231,20 @@ export const translations = {
       quickLinks: 'Liens Rapides',
       services: 'Services',
       servicesItems: ['Automatisation IA', 'Formation IA', 'Audit de Performance'],
-      copyright: '© 2022 - {YEAR} Startandgrowth. Tous droits réservés.'
+      copyright: '© 2025 Startandgrowth. Tous droits réservés. Conçu pour l\'avenir.'
+    },
+    event: {
+      badge: 'Événement Exclusif',
+      title: 'AI FACTORY',
+      subtitle: 'COTONOU 2026',
+      tagline: 'Intelligence Artificielle pour la performance et la souveraineté numérique.',
+      description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
+      cta: 'En Savoir Plus sur AI Factory',
+      teaser: {
+        title: 'Rejoignez-nous à AI FACTORY',
+        description: 'Découvrez comment l\'IA façonne l\'avenir de la souveraineté numérique africaine',
+        date: 'Cotonou 2026'
+      }
     }
   }
 };

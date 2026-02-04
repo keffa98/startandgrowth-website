@@ -407,7 +407,7 @@ const Home = () => {
                 <p className={`text-base ${isDark ? 'text-white/60' : 'text-slate-500'}`}>
                   {t.event.description}
                 </p>
-                
+                <br/>
                 <Link to="/event">
                   <Button className="bg-gradient-to-r from-[#00FFD1] to-[#39ADE3] text-black hover:from-[#39ADE3] hover:to-[#00FFD1] font-bold px-8 h-14 rounded-full text-base group shadow-2xl shadow-[#00FFD1]/30 hover:shadow-[#00FFD1]/50 transition-all duration-300 hover:scale-105 border-2 border-white/20">
                     <span>{t.event.cta}</span>

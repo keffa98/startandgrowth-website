@@ -15,6 +15,9 @@ const Event = () => {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
+  // Toggle to show/hide partner logos section (set to true when partnerships are official)
+  const showPartners = false;
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e) => {
@@ -353,23 +356,60 @@ const Event = () => {
             {content.ecosystem.intro}
           </p>
           
-          <div className="space-y-4 mb-6">
+          <div className="space-y-4 mb-6 flex flex-col items-center">
             {content.ecosystem.items.map((item, idx) => (
-              <div key={idx} className={`flex items-start gap-3 ${isDark ? 'text-white/70' : 'text-slate-600'}`}>
-                <Rocket className="w-5 h-5 text-[#00FFD1] flex-shrink-0 mt-0.5" />
+              <div key={idx} className={`flex items-center gap-3 ${isDark ? 'text-white/70' : 'text-slate-600'}`}>
+                <Rocket className="w-5 h-5 text-[#00FFD1] flex-shrink-0" />
                 <span className="text-lg">{item}</span>
               </div>
             ))}
           </div>
-          
+
+          {/* Partner Logos Section - Hidden until partnerships are official */}
+          {showPartners && (
+            <div className="mt-12 mb-8">
+              <h3 className={`text-2xl font-bold mb-8 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                {language === 'en' ? 'Our Partners' : 'Nos Partenaires'}
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center">
+                {/* Partner Logo 1 */}
+                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
+                  <img
+                    src="/assets/10000CodeursBlanc6000 px.png"
+                    alt="10000 Codeurs Logo"
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
+
+                {/* Partner Logo 2 */}
+                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
+                  <img
+                    src="/assets/GDG.png"
+                    alt="GDG Logo"
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
+
+                {/* Partner Logo 3 */}
+                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
+                  <img
+                    src="/assets/Logo_8_HUB.jpg"
+                    alt="8 HUB Logo"
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           <p className={`text-sm ${isDark ? 'text-white/50' : 'text-slate-500'} text-center italic`}>
             {content.ecosystem.note}
           </p>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10 ${isDark ? 'bg-[#0a0a0a]/50' : 'bg-slate-50/50'} backdrop-blur-sm`}>
+      {/* CTA Section 
+     <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10 ${isDark ? 'bg-[#0a0a0a]/50' : 'bg-slate-50/50'} backdrop-blur-sm`}>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {content.cta.title}
@@ -393,7 +433,7 @@ const Event = () => {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

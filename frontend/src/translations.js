@@ -112,10 +112,10 @@ export const translations = {
     event: {
       badge: 'Exclusive Event',
       title: 'AI FACTORY',
-      subtitle: 'COTONOU 2026',
-      tagline: 'Artificial Intelligence for performance and digital sovereignty.',
-      description: 'An exclusive afterwork to connect technical expertise with economic growth.',
-      cta: 'Learn More About AI Factory',
+      subtitle: 'FEBRUARY 2026 - COTONOU',
+      tagline: 'How using AI can contribute to company growth',
+      description: 'An exclusive afterwork to discuss about AI Impact on economic growth',
+      cta: 'Learn More',
       teaser: {
         title: 'Join Us at AI FACTORY',
         description: 'Discover how AI is shaping the future of African digital sovereignty',
@@ -126,26 +126,26 @@ export const translations = {
       backToHome: 'Back to Home',
       hero: {
         badge: 'Exclusive Event',
-        title: 'AI FACTORY: COTONOU 2026',
-        subtitle: 'Artificial Intelligence for performance and digital sovereignty.',
-        description: 'An exclusive afterwork to connect technical expertise with economic growth.',
-        format: 'Format: Strategic Afterwork | Location: Cotonou | Target: Decision Makers & Tech Talents'
+        title: 'AI FACTORY: 19 FEV 2026',
+        subtitle: 'Artificial Intelligence for company growth',
+        description: 'An exclusive afterwork to discuss about AI Impact on economic growth',
+        format: 'Format: Strategic Afterwork | Location: Business Center Aréolis | Target: Executives & Tech Talents'
       },
       why: {
         title: 'Why AI Factory?',
-        intro: 'Africa must no longer just be a consumer, but an architect of its digital revolution. To build tomorrow\'s champions (our future GAFAMs), two levers are essential:',
+        intro: 'Africa must no longer just be a consumer, but an architect of its own digital revolution. To build tomorrow\'s champions (our future African Numeric GIANTS), three levers are essential:',
         points: [
           {
             title: 'Scalability',
-            desc: 'Moving from artisanal to industrial deployment (DevOps & Automation).'
+            desc: 'Go beyond digital craftsmanship thanks to DevOps and cutting-edge architectures to support massive growth.'
           },
           {
             title: 'Performance',
-            desc: 'Transforming data into real profit and operational optimization.'
+            desc: 'Use the latest Engineering & AI tools to transform data into real profit and precision efficiency.'
           },
           {
             title: 'Sovereignty',
-            desc: 'Mastering our tools to guarantee our digital independence.'
+            desc: 'Mastering the tools of tomorrow to guarantee our independence today.'
           }
         ]
       },
@@ -155,10 +155,10 @@ export const translations = {
         items: [
           {
             icon: '⚡',
-            title: 'Lightning Talk (45 min)',
+            title: 'Lightning Talk (1 hour)',
             points: [
               'AI & ROI: How AI concretely boosts revenue.',
-              'Demos: Use cases adapted to the Beninese market (Logistics, Fintech, AgriTech).',
+              'Demos: Use cases adapted to the Beninese market.',
               'Sovereignty: Infrastructure and Cloud, the foundations of freedom.'
             ]
           },
@@ -166,22 +166,22 @@ export const translations = {
             icon: '🤝',
             title: 'Selective Networking',
             points: [
-              'Connecting project leaders, investors, and experts.'
+              'Connecting execs, institutions and experts.'
             ]
           },
-          {
+          /*{
             icon: '🎙️',
             title: '"Future of Africa" Capsules',
             points: [
               'Live podcast recording to document the vision of tech leaders present.'
             ]
-          }
+          }*/
         ]
       },
       benefits: {
         title: 'What you will gain',
         decision: {
-          title: 'For Decision Makers (CEOs/CMOs)',
+          title: 'For Executives (C-levels)',
           items: [
             'Understand the real ROI of AI.',
             'Identify cost reduction levers.',
@@ -189,10 +189,10 @@ export const translations = {
           ]
         },
         experts: {
-          title: 'For Experts (CTOs/Devs)',
+          title: 'For Experts (Tech Talents)',
           items: [
-            'Discover international DevOps standards.',
-            'Exchange on local data challenges.',
+            'Discover international standards.',
+            'Exchange on local challenges.',
             'Contribute to the country\'s sovereignty.'
           ]
         }
@@ -200,8 +200,8 @@ export const translations = {
       initiator: {
         title: 'The Initiator',
         subtitle: 'International expertise serving local needs',
-        name: 'Kéffa AGBOTON',
-        bio: 'DevOps & Performance Engineer with 7 years of international experience. Consultant in automation and AI, he supports companies in their transformation towards highly scalable systems. Active member of the diaspora committed to the emergence of African tech champions.'
+        name: 'Aros FONTON',
+        bio: 'Software Engineer and AI Consultant, he supports companies in their transformation towards highly scalable systems. Active member of the diaspora committed to the emergence of African tech champions.'
       },
       ecosystem: {
         title: 'Ecosystem & Synergies',
@@ -333,10 +333,10 @@ export const translations = {
     event: {
       badge: 'Événement Exclusif',
       title: 'AI FACTORY',
-      subtitle: 'COTONOU 2026',
-      tagline: 'Intelligence Artificielle au service de la performance et de la souveraineté numérique.',
-      description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
-      cta: 'En Savoir Plus sur AI Factory',
+      subtitle: '19 FEV 2026',
+      tagline: 'L\'intelligence artificielle au service de la croissance des entreprises.',
+      description: 'Un afterwork exclusif pour connecter la tech à la croissance économique.',
+      cta: 'En Savoir Plus',
       teaser: {
         title: 'Rejoignez-nous à AI FACTORY',
         description: 'Découvrez comment l\'IA façonne l\'avenir de la souveraineté numérique africaine',
@@ -347,26 +347,26 @@ export const translations = {
       backToHome: 'Retour à l\'Accueil',
       hero: {
         badge: 'Événement Exclusif',
-        title: 'AI FACTORY : COTONOU 2026',
+        title: 'AI FACTORY : 19 FEV 2026',
         subtitle: 'L\'Intelligence Artificielle au service de la performance et de la souveraineté numérique.',
         description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
-        format: 'Format : Afterwork Stratégique | Lieu : Cotonou | Cible : Décideurs & Talents Tech'
+        format: 'Format : Afterwork Stratégique | Lieu : Business Center Aréolis | Cible : Décideurs & Talents Tech'
       },
       why: {
-        title: 'Pourquoi l\'IA Factory ?',
-        intro: 'L\'Afrique ne doit plus seulement être consommatrice, mais architecte de sa révolution numérique. Pour bâtir les champions de demain (nos futurs GAFAM), deux leviers sont indispensables :',
+        title: 'Pourquoi AI Factory ?',
+        intro: 'L\'Afrique ne doit plus seulement être consommatrice, mais architecte de sa révolution numérique. Pour bâtir les champions de demain (nos futurs géants du numérique Africain), trois leviers sont indispensables :',
         points: [
           {
             title: 'La Scalabilité',
-            desc: 'Passer de l\'artisanat au déploiement industriel (DevOps & Automation).'
+            desc: 'Passer de l\'artisanat au aux architectures de pointe pour supporter une croissance massive.'
           },
           {
             title: 'La Performance',
-            desc: 'Transformer la donnée en profit réel et en optimisation opérationnelle.'
+            desc: 'Utiliser les derniers outils d\'Engineering & AI pour transformer la donnée en profit réel et en efficacité millimétrée.'
           },
           {
             title: 'La Souveraineté',
-            desc: 'Maîtriser nos outils pour garantir notre indépendance numérique.'
+            desc: 'Maîtriser les outils de demain pour garantir notre indépendance dès aujourd\'hui.'
           }
         ]
       },
@@ -379,7 +379,7 @@ export const translations = {
             title: 'Lightning Talk (45 min)',
             points: [
               'IA & ROI : Comment l\'IA booste concrètement le chiffre d\'affaires.',
-              'Démos : Cas d\'usages adaptés au marché béninois (Logistique, Fintech, AgriTech).',
+              'Démos : Cas d\'usages adaptés au marché béninois.',
               'Souveraineté : Infrastructures et Cloud, les bases de la liberté.'
             ]
           },
@@ -390,19 +390,19 @@ export const translations = {
               'Mise en relation entre porteurs de projets, investisseurs et experts.'
             ]
           },
-          {
+          /*{
             icon: '🎙️',
             title: 'Capsules "Future of Africa"',
             points: [
               'Enregistrement de podcasts live pour documenter la vision des leaders tech présents.'
             ]
-          }
+          }*/
         ]
       },
       benefits: {
         title: 'Ce que vous allez en retirer',
         decision: {
-          title: 'Pour les Décideurs (CEOs/CMOs)',
+          title: 'Pour les Décideurs (C-levels)',
           items: [
             'Comprendre le ROI réel de l\'IA.',
             'Identifier les leviers de réduction de coûts.',
@@ -410,7 +410,7 @@ export const translations = {
           ]
         },
         experts: {
-          title: 'Pour les Experts (CTOs/Devs)',
+          title: 'Pour les Experts (Talents Tech)',
           items: [
             'Découvrir les standards DevOps internationaux.',
             'Échanger sur les enjeux de la data locale.',
@@ -421,8 +421,8 @@ export const translations = {
       initiator: {
         title: 'L\'Initiateur',
         subtitle: 'Une expertise internationale au service du local',
-        name: 'Kéffa AGBOTON',
-        bio: 'Ingénieur DevOps & Performance avec 7 ans d\'expérience internationale. Consultant en automatisation et IA, il accompagne les entreprises dans leur transformation vers des systèmes hautement scalables. Membre actif de la diaspora engagé pour l\'éclosion de champions tech africains.'
+        name: 'Aros FONTON',
+        bio: 'Ingénieur IT et Consultant en IA, il accompagne les entreprises dans leur transformation vers des systèmes hautement scalables. Membre actif de la diaspora engagé pour l\'éclosion de champions tech africains.'
       },
       ecosystem: {
         title: 'Écosystème & Synergies',
@@ -431,7 +431,7 @@ export const translations = {
         items: [
           'Les communautés de développeurs locales.',
           'Les réseaux d\'accompagnement à l\'entrepreneuriat numérique.',
-          'Les institutions de promotion des PME et de l\'investissement.'
+          'Les institutions de promotion des entreprises.'
         ],
         note: '(En cours de structuration avec les acteurs majeurs du secteur).'
       },

@@ -16,7 +16,7 @@ const Event = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // Toggle to show/hide partner logos section (set to true when partnerships are official)
-  const showPartners = false;
+  const showPartners = true;
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -322,7 +322,7 @@ const Event = () => {
         </div>
       </section>
 
-      {/* Initiator Section */}
+      {/* Initiator Section 
       <section className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10 ${isDark ? 'bg-[#0a0a0a]/50' : 'bg-slate-50/50'} backdrop-blur-sm`}>
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-8">
@@ -341,7 +341,7 @@ const Event = () => {
             </p>
           </Card>
         </div>
-      </section>
+      </section> */}
 
       {/* Ecosystem Section */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative z-10">
@@ -356,7 +356,7 @@ const Event = () => {
             {content.ecosystem.intro}
           </p>
           
-          <div className="space-y-4 mb-6 flex flex-col items-center">
+          <div className="space-y-4 mb-6 flex flex-col items-start max-w-2xl mx-auto">
             {content.ecosystem.items.map((item, idx) => (
               <div key={idx} className={`flex items-center gap-3 ${isDark ? 'text-white/70' : 'text-slate-600'}`}>
                 <Rocket className="w-5 h-5 text-[#00FFD1] flex-shrink-0" />
@@ -368,9 +368,9 @@ const Event = () => {
           {/* Partner Logos Section - Hidden until partnerships are official */}
           {showPartners && (
             <div className="mt-12 mb-8">
-              <h3 className={`text-2xl font-bold mb-8 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              {/*<h3 className={`text-2xl font-bold mb-8 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 {language === 'en' ? 'Our Partners' : 'Nos Partenaires'}
-              </h3>
+              </h3>*/}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center">
                 {/* Partner Logo 1 */}
                 <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
@@ -381,7 +381,25 @@ const Event = () => {
                   />
                 </div>
 
-                {/* Partner Logo 2 */}
+                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
+                  <img
+                    src="/assets/Logo_8_HUB.jpg"
+                    alt="8 HUB Logo"
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
+
+                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
+                  <img
+                    src="/assets/logo.png"
+                    alt="StartandGrowth Logo"
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
+
+
+
+                {/* Partner Logo 2 
                 <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
                   <img
                     src="/assets/GDG.png"
@@ -391,13 +409,7 @@ const Event = () => {
                 </div>
 
                 {/* Partner Logo 3 */}
-                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
-                  <img
-                    src="/assets/Logo_8_HUB.jpg"
-                    alt="8 HUB Logo"
-                    className="w-full h-24 object-contain"
-                  />
-                </div>
+
               </div>
             </div>
           )}

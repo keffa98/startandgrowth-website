@@ -26,6 +26,15 @@ export const ThemeProvider = ({ children }) => {
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
+    // Check URL parameter first
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+
+    if (langParam && (langParam === 'en' || langParam === 'fr')) {
+      return langParam;
+    }
+
+    // Fall back to localStorage or default
     const saved = localStorage.getItem('language');
     return saved || 'en';
   });

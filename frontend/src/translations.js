@@ -31,7 +31,7 @@ export const translations = {
     services: {
       badge: 'Our Expertise',
       title: 'Comprehensive AI Solutions',
-      subtitle: 'Enterprise-grade services designed to accelerate transformation',
+      subtitle: 'Services designed to accelerate transformation',
       learnMore: 'Learn More',
       items: [
         {
@@ -126,10 +126,10 @@ export const translations = {
       backToHome: 'Back to Home',
       hero: {
         badge: 'Exclusive Event',
-        title: 'AI FACTORY: 19 FEV 2026',
+        title: 'AI FACTORY: 18 FEB 2026',
         subtitle: 'Artificial Intelligence for company growth',
         description: 'An exclusive afterwork to discuss about AI Impact on economic growth',
-        format: 'Format: Strategic Afterwork | Location: Business Center Aréolis | Target: Executives & Tech Talents'
+        format: 'Format: Strategic Afterwork | Location: To be confirmed (TBC) | Time: 18h - 20h30 | Target: Executives & Tech Talents'
       },
       why: {
         title: 'Why AI Factory?',
@@ -179,7 +179,7 @@ export const translations = {
         ]
       },
       benefits: {
-        title: 'What you will gain',
+        title: 'What you will gain ?',
         decision: {
           title: 'For Executives (C-levels)',
           items: [
@@ -198,7 +198,7 @@ export const translations = {
         }
       },
       initiator: {
-        title: 'The Initiator',
+        title: 'Orga,',
         subtitle: 'International expertise serving local needs',
         name: 'Aros FONTON',
         bio: 'Software Engineer and AI Consultant, he supports companies in their transformation towards highly scalable systems. Active member of the diaspora committed to the emergence of African tech champions.'
@@ -252,7 +252,7 @@ export const translations = {
     services: {
       badge: 'Notre Expertise',
       title: 'Solutions IA Complètes',
-      subtitle: 'Services de niveau entreprise conçus pour accélérer la transformation',
+      subtitle: 'Services conçus pour accélérer la transformation',
       learnMore: 'En Savoir Plus',
       items: [
         {
@@ -333,7 +333,7 @@ export const translations = {
     event: {
       badge: 'Événement Exclusif',
       title: 'AI FACTORY',
-      subtitle: '19 FEV 2026',
+      subtitle: '18 FEV 2026',
       tagline: 'L\'intelligence artificielle au service de la croissance des entreprises.',
       description: 'Un afterwork exclusif pour connecter la tech à la croissance économique.',
       cta: 'En Savoir Plus',
@@ -347,10 +347,10 @@ export const translations = {
       backToHome: 'Retour à l\'Accueil',
       hero: {
         badge: 'Événement Exclusif',
-        title: 'AI FACTORY : 19 FEV 2026',
-        subtitle: 'L\'Intelligence Artificielle au service de la performance et de la souveraineté numérique.',
+        title: 'AI FACTORY : 18 FEV 2026',
+        subtitle: 'L\'Intelligence artificielle au service de la croissance des entreprises',
         description: 'Un afterwork exclusif pour connecter l\'expertise technique à la croissance économique.',
-        format: 'Format : Afterwork Stratégique | Lieu : Business Center Aréolis | Cible : Décideurs & Talents Tech'
+        format: 'Format : Afterwork Stratégique | Lieu exact communiqué prochainement | Heure : 18h - 20h30 | Cible : Décideurs & Talents Tech'
       },
       why: {
         title: 'Pourquoi AI Factory ?',
@@ -376,7 +376,7 @@ export const translations = {
         items: [
           {
             icon: '⚡',
-            title: 'Lightning Talk (45 min)',
+            title: 'Lightning Talk (1 hr)',
             points: [
               'IA & ROI : Comment l\'IA booste concrètement le chiffre d\'affaires.',
               'Démos : Cas d\'usages adaptés au marché béninois.',
@@ -387,7 +387,7 @@ export const translations = {
             icon: '🤝',
             title: 'Networking Sélectif',
             points: [
-              'Mise en relation entre porteurs de projets, investisseurs et experts.'
+              'Mise en relation entre porteurs de projets, institutions et experts autour d\'un cocktail dinatoire.'
             ]
           },
           /*{
@@ -412,24 +412,24 @@ export const translations = {
         experts: {
           title: 'Pour les Experts (Talents Tech)',
           items: [
-            'Découvrir les standards DevOps internationaux.',
-            'Échanger sur les enjeux de la data locale.',
+            'Découvrir les standards internationaux.',
+            'Échanger sur les enjeux de la data.',
             'Contribuer à la souveraineté du pays.'
           ]
         }
       },
       initiator: {
-        title: 'L\'Initiateur',
-        subtitle: 'Une expertise internationale au service du local',
+        title: 'Organisé par',
+        subtitle: 'Une expertise internationale au service de l\'écosytème local',
         name: 'Aros FONTON',
-        bio: 'Ingénieur IT et Consultant en IA, il accompagne les entreprises dans leur transformation vers des systèmes hautement scalables. Membre actif de la diaspora engagé pour l\'éclosion de champions tech africains.'
+        bio: ' Référent IA 10 000 Codeurs et Ingénieur Informatique, il accompagne les entreprises dans leur transformation vers des systèmes hautement scalables. Membre actif de la diaspora engagé pour l\'éclosion de champions tech africains.'
       },
       ecosystem: {
         title: 'Écosystème & Synergies',
         subtitle: 'Une dynamique collective',
         intro: 'Cet événement aspire à fédérer les forces vives de l\'écosystème :',
         items: [
-          'Les communautés de développeurs locales.',
+          'Les communautés tech locales.',
           'Les réseaux d\'accompagnement à l\'entrepreneuriat numérique.',
           'Les institutions de promotion des entreprises.'
         ],

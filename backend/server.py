@@ -390,7 +390,7 @@ async def generate_specs(request: GenerateSpecsRequest):
         user_message = UserMessage(text=specs_prompt)
         specs_document = await chat.send_message(user_message)
         
-        # Save lead to Firestore
+        # Save lead to database
         lead_id = str(uuid.uuid4())
         lead_doc = {
             "id": lead_id,
@@ -404,8 +404,12 @@ async def generate_specs(request: GenerateSpecsRequest):
             "specs_document": specs_document,
             "created_at": datetime.now(timezone.utc).isoformat()
         }
-        db.collection('leads').document(lead_id).set(lead_doc)
-        logger.info(f"Lead saved to Firestore: {lead_id}")
+        if USE_FIRESTORE:
+            firestore_db.collection('leads').document(lead_id).set(lead_doc)
+            logger.info(f"Lead saved to Firestore: {lead_id}")
+        else:
+            await mongo_db.leads.insert_one(lead_doc)
+            logger.info(f"Lead saved to MongoDB: {lead_id}")
         
         # Send email with specs
         email_subject = "Your Project Specifications - Startandgrowth" if language == "en" else "Vos Spécifications de Projet - Startandgrowth"

@@ -13,40 +13,62 @@ import uuid
 from datetime import datetime, timezone
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 
-# Firebase Admin SDK
-import firebase_admin
-from firebase_admin import credentials, firestore
-
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# Firebase initialization
-def init_firebase():
-    """Initialize Firebase Admin SDK"""
-    if firebase_admin._apps:
-        return firestore.client()
-    
-    # Check for service account file first
-    service_account_path = ROOT_DIR / 'firebase-service-account.json'
-    
-    if service_account_path.exists():
-        cred = credentials.Certificate(str(service_account_path))
-    elif os.environ.get('FIREBASE_SERVICE_ACCOUNT'):
-        # For Render: parse JSON from environment variable
-        service_account_info = json.loads(os.environ['FIREBASE_SERVICE_ACCOUNT'])
-        cred = credentials.Certificate(service_account_info)
-    else:
-        raise ValueError("Firebase credentials not found. Set FIREBASE_SERVICE_ACCOUNT env var or add firebase-service-account.json")
-    
-    firebase_admin.initialize_app(cred)
-    return firestore.client()
+# Database initialization - supports both Firestore and MongoDB
+USE_FIRESTORE = False
+db = None
+firestore_db = None
+mongo_db = None
 
-# Initialize Firestore
-db = init_firebase()
+def init_database():
+    """Initialize database - Firestore for production, MongoDB for local dev"""
+    global USE_FIRESTORE, db, firestore_db, mongo_db
+    
+    # Try Firebase first
+    service_account_path = ROOT_DIR / 'firebase-service-account.json'
+    firebase_env = os.environ.get('FIREBASE_SERVICE_ACCOUNT')
+    
+    if service_account_path.exists() or firebase_env:
+        try:
+            import firebase_admin
+            from firebase_admin import credentials, firestore
+            
+            if not firebase_admin._apps:
+                if service_account_path.exists():
+                    cred = credentials.Certificate(str(service_account_path))
+                else:
+                    service_account_info = json.loads(firebase_env)
+                    cred = credentials.Certificate(service_account_info)
+                firebase_admin.initialize_app(cred)
+            
+            firestore_db = firestore.client()
+            USE_FIRESTORE = True
+            logging.info("✅ Using Firestore database")
+            return firestore_db
+        except Exception as e:
+            logging.warning(f"Firebase init failed: {e}, falling back to MongoDB")
+    
+    # Fallback to MongoDB for local development
+    try:
+        from motor.motor_asyncio import AsyncIOMotorClient
+        mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+        client = AsyncIOMotorClient(mongo_url)
+        mongo_db = client[os.environ.get('DB_NAME', 'startandgrowth')]
+        USE_FIRESTORE = False
+        logging.info("✅ Using MongoDB database (local mode)")
+        return mongo_db
+    except Exception as e:
+        logging.error(f"MongoDB init failed: {e}")
+        raise ValueError("No database available. Set up Firebase or MongoDB.")
+
+# Initialize database
+db = init_database()
 
 # Resend setup
 resend.api_key = os.environ.get('RESEND_API_KEY', '')
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'aiagent@startandgrowth.net')
 
 # Create the main app
 app = FastAPI()

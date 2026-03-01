@@ -460,6 +460,27 @@ export const translations = {
         title: 'Restez informés ou rejoignez l\'aventure',
         subtitle: 'Vous souhaitez participer, devenir partenaire ou intervenir ?'
       }
+    },
+    assistant: {
+      badge: 'Assistant IA',
+      title: 'Assistant Cahier des Charges',
+      subtitle: 'Parlez-nous de votre projet et nous vous aiderons à définir les spécifications',
+      backToHome: 'Retour à l\'Accueil',
+      inputPlaceholder: 'Tapez votre message...',
+      contactTitle: 'Presque terminé ! Entrez vos coordonnées pour recevoir vos spécifications',
+      namePlaceholder: 'Votre nom *',
+      emailPlaceholder: 'Votre email *',
+      companyPlaceholder: 'Nom de l\'entreprise',
+      phonePlaceholder: 'Numéro de téléphone',
+      generateAndSend: 'Générer et Envoyer les Spécifications',
+      generating: 'Génération des spécifications...',
+      specsTitle: 'Vos Spécifications de Projet',
+      newConversation: 'Nouvelle Conversation',
+      specsEmailSent: 'Vos spécifications ont été générées et envoyées à {email} !',
+      specsGenerated: 'Vos spécifications ont été générées !',
+      errorStarting: 'Désolé, je n\'ai pas pu démarrer la session. Veuillez rafraîchir la page.',
+      errorSending: 'Désolé, je n\'ai pas pu traiter votre message. Veuillez réessayer.',
+      errorGenerating: 'Désolé, une erreur s\'est produite lors de la génération de vos spécifications. Veuillez réessayer.'
     }
   }
 };

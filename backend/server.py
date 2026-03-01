@@ -491,11 +491,16 @@ async def generate_specs(request: GenerateSpecsRequest):
 
 @api_router.get("/leads")
 async def get_leads():
-    """Get all leads from Firestore"""
-    docs = db.collection('leads').order_by('created_at', direction=firestore.Query.DESCENDING).stream()
+    """Get all leads from database"""
     leads = []
-    for doc in docs:
-        leads.append(doc.to_dict())
+    if USE_FIRESTORE:
+        from firebase_admin import firestore as fs
+        docs = firestore_db.collection('leads').order_by('created_at', direction=fs.Query.DESCENDING).stream()
+        for doc in docs:
+            leads.append(doc.to_dict())
+    else:
+        docs = await mongo_db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+        leads = docs
     return {"leads": leads, "count": len(leads)}
 
 

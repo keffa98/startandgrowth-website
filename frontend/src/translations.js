@@ -218,6 +218,27 @@ export const translations = {
         title: 'Stay informed or join the adventure',
         subtitle: 'Would you like to participate, become a partner, or speak?'
       }
+    },
+    assistant: {
+      badge: 'AI Assistant',
+      title: 'Project Requirements Assistant',
+      subtitle: 'Tell us about your project and we\'ll help you define the specifications',
+      backToHome: 'Back to Home',
+      inputPlaceholder: 'Type your message...',
+      contactTitle: 'Almost there! Enter your contact details to receive your specifications',
+      namePlaceholder: 'Your name *',
+      emailPlaceholder: 'Your email *',
+      companyPlaceholder: 'Company name',
+      phonePlaceholder: 'Phone number',
+      generateAndSend: 'Generate & Send Specifications',
+      generating: 'Generating specifications...',
+      specsTitle: 'Your Project Specifications',
+      newConversation: 'Start New Conversation',
+      specsEmailSent: 'Your specifications have been generated and sent to {email}!',
+      specsGenerated: 'Your specifications have been generated!',
+      errorStarting: 'Sorry, I couldn\'t start the session. Please refresh the page.',
+      errorSending: 'Sorry, I couldn\'t process your message. Please try again.',
+      errorGenerating: 'Sorry, there was an error generating your specifications. Please try again.'
     }
   },
   fr: {

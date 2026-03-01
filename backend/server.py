@@ -251,16 +251,50 @@ Formatez ceci comme un document professionnel pouvant être partagé avec les pa
 }
 
 
-def get_or_create_chat(session_id: str, language: str = "en") -> LlmChat:
+# OpenAI client initialization
+openai_client = AsyncOpenAI(api_key=os.environ.get('EMERGENT_LLM_KEY', ''))
+
+
+async def chat_with_openai(session_id: str, user_message: str, language: str = "en") -> str:
+    """Send message to OpenAI and get response"""
+    # Get or create session
+    if session_id not in chat_sessions:
+        chat_sessions[session_id] = {
+            "messages": [],
+            "language": language,
+            "history": [{"role": "system", "content": SYSTEM_PROMPTS.get(language, SYSTEM_PROMPTS["en"])}]
+        }
+    
+    session = chat_sessions[session_id]
+    
+    # Add user message to history
+    session["history"].append({"role": "user", "content": user_message})
+    
+    # Call OpenAI
+    response = await openai_client.chat.completions.create(
+        model="gpt-4o",
+        messages=session["history"],
+        max_tokens=1000,
+        temperature=0.7
+    )
+    
+    assistant_message = response.choices[0].message.content
+    
+    # Add assistant response to history
+    session["history"].append({"role": "assistant", "content": assistant_message})
+    
+    return assistant_message
+
+
+def get_or_create_chat(session_id: str, language: str = "en"):
     """Get existing chat session or create a new one"""
     if session_id not in chat_sessions:
-        chat = LlmChat(
-            api_key=os.environ.get('EMERGENT_LLM_KEY', ''),
-            session_id=session_id,
-            system_message=SYSTEM_PROMPTS.get(language, SYSTEM_PROMPTS["en"])
-        ).with_model("openai", "gpt-4o")
-        chat_sessions[session_id] = {"chat": chat, "language": language, "messages": []}
-    return chat_sessions[session_id]["chat"]
+        chat_sessions[session_id] = {
+            "messages": [],
+            "language": language,
+            "history": [{"role": "system", "content": SYSTEM_PROMPTS.get(language, SYSTEM_PROMPTS["en"])}]
+        }
+    return chat_sessions[session_id]
 
 
 @api_router.get("/")

@@ -282,20 +282,30 @@ async def create_status_check(input: StatusCheckCreate):
         "client_name": status_obj.client_name,
         "timestamp": status_obj.timestamp.isoformat()
     }
-    # Save to Firestore
-    db.collection('status_checks').document(status_obj.id).set(doc_data)
+    # Save to database
+    if USE_FIRESTORE:
+        firestore_db.collection('status_checks').document(status_obj.id).set(doc_data)
+    else:
+        await mongo_db.status_checks.insert_one(doc_data)
     return status_obj
 
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    docs = db.collection('status_checks').stream()
     status_checks = []
-    for doc in docs:
-        data = doc.to_dict()
-        if isinstance(data.get('timestamp'), str):
-            data['timestamp'] = datetime.fromisoformat(data['timestamp'])
-        status_checks.append(StatusCheck(**data))
+    if USE_FIRESTORE:
+        docs = firestore_db.collection('status_checks').stream()
+        for doc in docs:
+            data = doc.to_dict()
+            if isinstance(data.get('timestamp'), str):
+                data['timestamp'] = datetime.fromisoformat(data['timestamp'])
+            status_checks.append(StatusCheck(**data))
+    else:
+        docs = await mongo_db.status_checks.find({}, {"_id": 0}).to_list(1000)
+        for data in docs:
+            if isinstance(data.get('timestamp'), str):
+                data['timestamp'] = datetime.fromisoformat(data['timestamp'])
+            status_checks.append(StatusCheck(**data))
     return status_checks
 
 

@@ -375,7 +375,7 @@ const Event = () => {
                 {/* Partner Logo 1 */}
                 <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg`}>
                   <img
-                    src="/assets/10000CodeursBlanc6000 px.png"
+                    src={isDark ? "/assets/10000CodeursBlanc6000 px.png" : "/assets/10000CodeursLogo Noir6000 px.png"}
                     alt="10000 Codeurs Logo"
                     className="w-full h-24 object-contain"
                   />
@@ -409,6 +409,16 @@ const Event = () => {
                 </div>
 
                 {/* Partner Logo 3 */}
+
+              
+                <div className={`${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-slate-50'} backdrop-blur-xl p-6 rounded-2xl transition-all duration-300 hover:scale-105 border 
+                ${isDark ? 'border-white/10' : 'border-slate-200'} shadow-lg flex items-center justify-center`}>
+                  <img
+                    src={isDark ? "/assets/CCIB_WHITE.png" : "/assets/CCIB.png"}
+                    alt="CCIB Logo"
+                    className="w-full h-40 object-contain"
+                  />
+                </div>
 
               </div>
             </div>

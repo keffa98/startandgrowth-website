@@ -251,10 +251,19 @@ Formatez ceci comme un document professionnel pouvant être partagé avec les pa
 }
 
 
-# OpenAI client initialization - using Emergent's proxy
+# OpenAI client initialization
+# For production: use OPENAI_API_KEY
+# For Emergent environment: uses EMERGENT_LLM_KEY with their proxy
+api_key = os.environ.get('OPENAI_API_KEY') or os.environ.get('EMERGENT_LLM_KEY', '')
+base_url = None
+
+# If using Emergent key, use their proxy
+if not os.environ.get('OPENAI_API_KEY') and os.environ.get('EMERGENT_LLM_KEY'):
+    base_url = "https://api.emergentmethods.ai/v1"
+
 openai_client = AsyncOpenAI(
-    api_key=os.environ.get('EMERGENT_LLM_KEY', ''),
-    base_url="https://emergent-llm-gateway.onrender.com/v1"  # Emergent's proxy
+    api_key=api_key,
+    base_url=base_url
 )
 
 

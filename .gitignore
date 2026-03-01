@@ -85,19 +85,3 @@ android-sdk/ -e
 # Firebase credentials (SENSITIVE - never commit!)
 firebase-service-account.json
 *-service-account.json
--e 
-# Environment files
-*.env
-*.env.*
-
-# Firebase credentials (SENSITIVE - never commit!)
-firebase-service-account.json
-*-service-account.json
--e 
-# Environment files
-*.env
-*.env.*
-
-# Firebase credentials (SENSITIVE - never commit!)
-firebase-service-account.json
-*-service-account.json

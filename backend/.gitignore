@@ -1,0 +1,15 @@
+# Dependencies
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment (SENSITIVE)
+.env
+
+# Firebase credentials (SENSITIVE)
+firebase-service-account.json
+*-service-account.json
+
+# Logs
+*.log

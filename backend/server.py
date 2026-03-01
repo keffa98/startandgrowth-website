@@ -251,8 +251,11 @@ Formatez ceci comme un document professionnel pouvant être partagé avec les pa
 }
 
 
-# OpenAI client initialization
-openai_client = AsyncOpenAI(api_key=os.environ.get('EMERGENT_LLM_KEY', ''))
+# OpenAI client initialization - using Emergent's proxy
+openai_client = AsyncOpenAI(
+    api_key=os.environ.get('EMERGENT_LLM_KEY', ''),
+    base_url="https://emergent-llm-gateway.onrender.com/v1"  # Emergent's proxy
+)
 
 
 async def chat_with_openai(session_id: str, user_message: str, language: str = "en") -> str:

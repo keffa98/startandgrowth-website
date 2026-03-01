@@ -1,11 +1,11 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 import asyncio
 import resend
+import json
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
@@ -13,19 +13,42 @@ import uuid
 from datetime import datetime, timezone
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 
+# Firebase Admin SDK
+import firebase_admin
+from firebase_admin import credentials, firestore
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# Firebase initialization
+def init_firebase():
+    """Initialize Firebase Admin SDK"""
+    if firebase_admin._apps:
+        return firestore.client()
+    
+    # Check for service account file first
+    service_account_path = ROOT_DIR / 'firebase-service-account.json'
+    
+    if service_account_path.exists():
+        cred = credentials.Certificate(str(service_account_path))
+    elif os.environ.get('FIREBASE_SERVICE_ACCOUNT'):
+        # For Render: parse JSON from environment variable
+        service_account_info = json.loads(os.environ['FIREBASE_SERVICE_ACCOUNT'])
+        cred = credentials.Certificate(service_account_info)
+    else:
+        raise ValueError("Firebase credentials not found. Set FIREBASE_SERVICE_ACCOUNT env var or add firebase-service-account.json")
+    
+    firebase_admin.initialize_app(cred)
+    return firestore.client()
+
+# Initialize Firestore
+db = init_firebase()
 
 # Resend setup
 resend.api_key = os.environ.get('RESEND_API_KEY', '')
 SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
 
-# Create the main app without a prefix
+# Create the main app
 app = FastAPI()
 
 # Create a router with the /api prefix
@@ -38,7 +61,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Store active chat sessions
+# Store active chat sessions (in-memory for now)
 chat_sessions = {}
 
 # Define Models
@@ -62,7 +85,6 @@ class ChatResponse(BaseModel):
     requires_contact: bool = False
 
 class ContactInfo(BaseModel):
-    session_id: str
     name: str
     email: EmailStr
     company: Optional[str] = None
@@ -224,22 +246,34 @@ async def root():
     return {"message": "Hello World"}
 
 
+@api_router.get("/health")
+async def health_check():
+    """Health check endpoint for Render"""
+    return {"status": "healthy", "timestamp": datetime.now(timezone.utc).isoformat()}
+
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    _ = await db.status_checks.insert_one(doc)
+    status_obj = StatusCheck(**input.model_dump())
+    doc_data = {
+        "id": status_obj.id,
+        "client_name": status_obj.client_name,
+        "timestamp": status_obj.timestamp.isoformat()
+    }
+    # Save to Firestore
+    db.collection('status_checks').document(status_obj.id).set(doc_data)
     return status_obj
 
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
+    docs = db.collection('status_checks').stream()
+    status_checks = []
+    for doc in docs:
+        data = doc.to_dict()
+        if isinstance(data.get('timestamp'), str):
+            data['timestamp'] = datetime.fromisoformat(data['timestamp'])
+        status_checks.append(StatusCheck(**data))
     return status_checks
 
 
@@ -281,7 +315,7 @@ async def chat_with_assistant(request: ChatMessage):
         )
     except Exception as e:
         logger.error(f"Chat error: {str(e)}")
-        raise
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @api_router.post("/assistant/start")
@@ -313,7 +347,7 @@ async def generate_specs(request: GenerateSpecsRequest):
     """Generate specifications document and send via email"""
     try:
         if request.session_id not in chat_sessions:
-            return {"error": "Session not found"}
+            raise HTTPException(status_code=404, detail="Session not found")
         
         session_data = chat_sessions[request.session_id]
         chat = session_data["chat"]
@@ -324,9 +358,10 @@ async def generate_specs(request: GenerateSpecsRequest):
         user_message = UserMessage(text=specs_prompt)
         specs_document = await chat.send_message(user_message)
         
-        # Save lead to database
+        # Save lead to Firestore
+        lead_id = str(uuid.uuid4())
         lead_doc = {
-            "id": str(uuid.uuid4()),
+            "id": lead_id,
             "session_id": request.session_id,
             "name": request.contact.name,
             "email": request.contact.email,
@@ -337,7 +372,8 @@ async def generate_specs(request: GenerateSpecsRequest):
             "specs_document": specs_document,
             "created_at": datetime.now(timezone.utc).isoformat()
         }
-        await db.leads.insert_one(lead_doc)
+        db.collection('leads').document(lead_id).set(lead_doc)
+        logger.info(f"Lead saved to Firestore: {lead_id}")
         
         # Send email with specs
         email_subject = "Your Project Specifications - Startandgrowth" if language == "en" else "Vos Spécifications de Projet - Startandgrowth"
@@ -382,20 +418,22 @@ async def generate_specs(request: GenerateSpecsRequest):
         """
         
         # Send email
+        email_sent = False
+        email_id = None
         try:
-            params = {
-                "from": SENDER_EMAIL,
-                "to": [request.contact.email],
-                "subject": email_subject,
-                "html": email_html
-            }
-            email_result = await asyncio.to_thread(resend.Emails.send, params)
-            email_sent = True
-            email_id = email_result.get("id") if email_result else None
+            if resend.api_key and resend.api_key != 're_your_api_key_here':
+                params = {
+                    "from": SENDER_EMAIL,
+                    "to": [request.contact.email],
+                    "subject": email_subject,
+                    "html": email_html
+                }
+                email_result = await asyncio.to_thread(resend.Emails.send, params)
+                email_sent = True
+                email_id = email_result.get("id") if email_result else None
+                logger.info(f"Email sent: {email_id}")
         except Exception as e:
             logger.error(f"Failed to send email: {str(e)}")
-            email_sent = False
-            email_id = None
         
         # Clean up session
         if request.session_id in chat_sessions:
@@ -408,9 +446,21 @@ async def generate_specs(request: GenerateSpecsRequest):
             "email_id": email_id,
             "message": "Specifications generated successfully!" if language == "en" else "Spécifications générées avec succès!"
         }
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Generate specs error: {str(e)}")
-        return {"success": False, "error": str(e)}
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.get("/leads")
+async def get_leads():
+    """Get all leads from Firestore"""
+    docs = db.collection('leads').order_by('created_at', direction=firestore.Query.DESCENDING).stream()
+    leads = []
+    for doc in docs:
+        leads.append(doc.to_dict())
+    return {"leads": leads, "count": len(leads)}
 
 
 # Include the router in the main app
@@ -423,8 +473,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()

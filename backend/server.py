@@ -385,12 +385,11 @@ async def chat_with_assistant(request: ChatMessage):
 async def start_session(language: str = "en"):
     """Start a new chat session"""
     session_id = str(uuid.uuid4())
-    chat = get_or_create_chat(session_id, language)
+    get_or_create_chat(session_id, language)
     
     # Get initial greeting
     greeting_prompt = "Start the conversation with a greeting." if language == "en" else "Commencez la conversation avec une salutation."
-    user_message = UserMessage(text=greeting_prompt)
-    response = await chat.send_message(user_message)
+    response = await chat_with_openai(session_id, greeting_prompt, language)
     
     # Store the greeting
     chat_sessions[session_id]["messages"].append({
@@ -413,13 +412,11 @@ async def generate_specs(request: GenerateSpecsRequest):
             raise HTTPException(status_code=404, detail="Session not found")
         
         session_data = chat_sessions[request.session_id]
-        chat = session_data["chat"]
         language = request.language
         
         # Generate specs document
         specs_prompt = SPECS_GENERATION_PROMPT.get(language, SPECS_GENERATION_PROMPT["en"])
-        user_message = UserMessage(text=specs_prompt)
-        specs_document = await chat.send_message(user_message)
+        specs_document = await chat_with_openai(request.session_id, specs_prompt, language)
         
         # Save lead to database
         lead_id = str(uuid.uuid4())

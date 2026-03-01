@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: startandgrowth-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: FIREBASE_SERVICE_ACCOUNT
+        sync: false   # Set manually in Render dashboard
+      - key: EMERGENT_LLM_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: SENDER_EMAIL
+        value: aiagent@startandgrowth.net
+      - key: CORS_ORIGINS
+        value: https://startandgrowth.com,https://www.startandgrowth.com
+    healthCheckPath: /api/health

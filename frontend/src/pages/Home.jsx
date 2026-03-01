@@ -379,7 +379,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Event Teaser Section */}
+      {/* Event Teaser Section 
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-20 relative">
         <div className="container mx-auto max-w-6xl">
           <Card className={`relative ${isDark ? 'bg-gradient-to-br from-[#12141A] to-[#0A0B0F] border-[#00FFD1]/20' : 'bg-gradient-to-br from-white to-slate-50 border-[#0774B6]/20'} backdrop-blur-xl p-8 sm:p-12 md:p-16 overflow-hidden rounded-3xl border-2 hover:scale-105 transition-all duration-500`}>
@@ -428,7 +428,7 @@ const Home = () => {
             </div>
           </Card>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Section */}
       <section id="services" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 relative">

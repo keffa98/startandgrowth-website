@@ -77,7 +77,8 @@ agenthub/agents/youtube/db
 .cache/
 
 # Mobile development
-android-sdk/ -e 
+android-sdk/
+
 # Environment files
 *.env
 *.env.*
@@ -85,7 +86,3 @@ android-sdk/ -e
 # Firebase credentials (SENSITIVE - never commit!)
 firebase-service-account.json
 *-service-account.json
--e 
-# Environment files
-*.env
-*.env.*

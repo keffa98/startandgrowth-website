@@ -347,27 +347,24 @@ async def get_status_checks():
 async def chat_with_assistant(request: ChatMessage):
     """Send a message to the AI assistant and get a response"""
     try:
-        chat = get_or_create_chat(request.session_id, request.language)
+        get_or_create_chat(request.session_id, request.language)
         
         # Store user message
-        if request.session_id in chat_sessions:
-            chat_sessions[request.session_id]["messages"].append({
-                "role": "user",
-                "content": request.message,
-                "timestamp": datetime.now(timezone.utc).isoformat()
-            })
+        chat_sessions[request.session_id]["messages"].append({
+            "role": "user",
+            "content": request.message,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        })
         
-        # Send message to LLM
-        user_message = UserMessage(text=request.message)
-        response = await chat.send_message(user_message)
+        # Send message to OpenAI
+        response = await chat_with_openai(request.session_id, request.message, request.language)
         
         # Store assistant response
-        if request.session_id in chat_sessions:
-            chat_sessions[request.session_id]["messages"].append({
-                "role": "assistant",
-                "content": response,
-                "timestamp": datetime.now(timezone.utc).isoformat()
-            })
+        chat_sessions[request.session_id]["messages"].append({
+            "role": "assistant",
+            "content": response,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        })
         
         # Check if ready to generate specs
         is_complete = "[READY_FOR_SPECS]" in response

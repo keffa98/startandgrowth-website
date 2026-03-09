@@ -5,6 +5,7 @@ import { ThemeProvider, LanguageProvider } from './context/AppContext';
 import Home from './pages/Home';
 import Event from './pages/Event';
 import Assistant from './pages/Assistant';
+import Specs from './pages/Specs';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/event" element={<Event />} />
               <Route path="/aifactory" element={<Event />} />
               <Route path="/assistant" element={<Assistant />} />
+              <Route path="/specs/:token" element={<Specs />} />
             </Routes>
           </BrowserRouter>
         </div>

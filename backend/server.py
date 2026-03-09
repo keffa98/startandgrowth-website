@@ -12,6 +12,7 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 from openai import AsyncOpenAI
+from notion_client import AsyncClient as NotionAsyncClient
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -68,7 +69,20 @@ db = init_database()
 
 # Resend setup
 resend.api_key = os.environ.get('RESEND_API_KEY', '')
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'aiagent@startandgrowth.net')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'agent@startandgrowth.net')
+
+# Environment
+APP_ENV = os.environ.get('APP_ENV', 'development')
+IS_PRODUCTION = APP_ENV == 'production'
+LEADS_COLLECTION = 'leads' if IS_PRODUCTION else 'leads_dev'
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
+
+# Notion setup
+NOTION_API_KEY = os.environ.get('NOTION_API_KEY', '')
+NOTION_CONTACTS_DB_ID = os.environ.get('NOTION_CONTACTS_DB_ID', '')
+NOTION_CONTACTS_DB_DEV_ID = os.environ.get('NOTION_CONTACTS_DB_DEV_ID', NOTION_CONTACTS_DB_ID)
+NOTION_SPECS_PARENT_PAGE_ID = os.environ.get('NOTION_SPECS_PARENT_PAGE_ID', '')
+notion = NotionAsyncClient(auth=NOTION_API_KEY) if NOTION_API_KEY else None
 
 # Create the main app
 app = FastAPI()
@@ -85,6 +99,7 @@ logger = logging.getLogger(__name__)
 
 # Store active chat sessions (in-memory for now)
 chat_sessions = {}
+specs_store = {}  # In-memory fallback when Firestore is unavailable
 
 # Define Models
 class StatusCheck(BaseModel):
@@ -416,6 +431,131 @@ async def start_session(language: str = "en"):
     }
 
 
+def _split_text_blocks(text: str, max_length: int = 2000) -> list:
+    """Split text into Notion-compatible rich_text blocks (max 2000 chars each)."""
+    return [
+        {"type": "text", "text": {"content": text[i:i + max_length]}}
+        for i in range(0, len(text), max_length)
+    ]
+
+
+async def save_contact_to_notion(contact, notion_page_url: str = None):
+    """Add a contact entry to the Notion contacts database."""
+    db_id = NOTION_CONTACTS_DB_DEV_ID if not IS_PRODUCTION else NOTION_CONTACTS_DB_ID
+    if not notion or not db_id:
+        return
+    properties = {
+        "Name": {"title": [{"text": {"content": contact.name}}]},
+        "Email": {"email": contact.email},
+    }
+    if contact.company:
+        properties["Company"] = {"rich_text": [{"text": {"content": contact.company}}]}
+    if contact.phone:
+        properties["Phone"] = {"phone_number": contact.phone}
+    if notion_page_url:
+        properties["Specs Page"] = {"url": notion_page_url}
+    await notion.pages.create(
+        parent={"database_id": db_id},
+        properties=properties,
+    )
+
+
+def _parse_inline(text: str) -> list:
+    """Convert **bold** markdown to Notion rich_text objects."""
+    import re
+    parts = []
+    for chunk in re.split(r'(\*\*[^*]+\*\*)', text):
+        if chunk.startswith('**') and chunk.endswith('**'):
+            parts.append({"type": "text", "text": {"content": chunk[2:-2]}, "annotations": {"bold": True}})
+        elif chunk:
+            for sub in [chunk[i:i+2000] for i in range(0, len(chunk), 2000)]:
+                parts.append({"type": "text", "text": {"content": sub}})
+    return parts or [{"type": "text", "text": {"content": ""}}]
+
+
+def _specs_to_notion_blocks(text: str) -> list:
+    """Convert markdown-like specs text to Notion block objects, handling indented sub-bullets."""
+    import re
+    blocks = []
+    for line in text.split('\n'):
+        # Measure indentation before stripping
+        indent = len(line) - len(line.lstrip())
+        stripped = line.strip()
+
+        # Decorative separator lines
+        if re.fullmatch(r'[-*=]{2,}', stripped):
+            blocks.append({"object": "block", "type": "divider", "divider": {}})
+            continue
+
+        if not stripped:
+            blocks.append({"object": "block", "type": "paragraph", "paragraph": {"rich_text": []}})
+            continue
+
+        if stripped.startswith('### '):
+            blocks.append({"object": "block", "type": "heading_3", "heading_3": {"rich_text": _parse_inline(stripped[4:])}})
+        elif stripped.startswith('## '):
+            blocks.append({"object": "block", "type": "heading_2", "heading_2": {"rich_text": _parse_inline(stripped[3:])}})
+        elif stripped.startswith('# '):
+            blocks.append({"object": "block", "type": "heading_1", "heading_1": {"rich_text": _parse_inline(stripped[2:])}})
+        elif re.match(r'^[-*] ', stripped):
+            content = stripped[2:]
+            if indent >= 2 and blocks:
+                # Nest under the last bullet as a Notion child block
+                parent = blocks[-1]
+                parent_type = parent.get("type")
+                if parent_type in ("bulleted_list_item", "numbered_list_item"):
+                    parent.setdefault(parent_type, {}).setdefault("children", []).append(
+                        {"object": "block", "type": "bulleted_list_item",
+                         "bulleted_list_item": {"rich_text": _parse_inline(content)}}
+                    )
+                    continue
+            blocks.append({"object": "block", "type": "bulleted_list_item",
+                            "bulleted_list_item": {"rich_text": _parse_inline(content)}})
+        elif re.match(r'^\d+\. ', stripped):
+            content = re.sub(r'^\d+\. ', '', stripped)
+            blocks.append({"object": "block", "type": "numbered_list_item",
+                            "numbered_list_item": {"rich_text": _parse_inline(content)}})
+        else:
+            blocks.append({"object": "block", "type": "paragraph", "paragraph": {"rich_text": _parse_inline(stripped)}})
+
+    return blocks
+
+
+async def create_specs_notion_page(contact, specs_document: str, language: str) -> str | None:
+    """Create a Notion page with the specs document and return its URL."""
+    if not notion or not NOTION_SPECS_PARENT_PAGE_ID:
+        return None
+    title = f"Cahier des Charges – {contact.name}"
+    if contact.company:
+        title += f" ({contact.company})"
+
+    contact_lines = [f"👤 {contact.name}", f"✉️ {contact.email}"]
+    if contact.company:
+        contact_lines.append(f"🏢 {contact.company}")
+    if contact.phone:
+        contact_lines.append(f"📞 {contact.phone}")
+
+    children = [
+        {
+            "object": "block", "type": "callout",
+            "callout": {
+                "rich_text": [{"type": "text", "text": {"content": "\n".join(contact_lines)}}],
+                "icon": {"emoji": "📋"},
+                "color": "blue_background",
+            },
+        },
+        {"object": "block", "type": "divider", "divider": {}},
+        *_specs_to_notion_blocks(specs_document),
+    ]
+
+    page = await notion.pages.create(
+        parent={"page_id": NOTION_SPECS_PARENT_PAGE_ID},
+        properties={"title": {"title": [{"text": {"content": title}}]}},
+        children=children,
+    )
+    return page.get("url")
+
+
 @api_router.post("/assistant/generate-specs")
 async def generate_specs(request: GenerateSpecsRequest):
     """Generate specifications document and send via email"""
@@ -430,8 +570,20 @@ async def generate_specs(request: GenerateSpecsRequest):
         specs_prompt = SPECS_GENERATION_PROMPT.get(language, SPECS_GENERATION_PROMPT["en"])
         specs_document = await chat_with_openai(request.session_id, specs_prompt, language)
         
+        # Save to Notion: create specs page then add contact to DB
+        notion_page_url = None
+        try:
+            notion_page_url = await create_specs_notion_page(request.contact, specs_document, language)
+            await save_contact_to_notion(request.contact, notion_page_url)
+            if notion_page_url:
+                logger.info(f"Notion page created: {notion_page_url}")
+        except Exception as e:
+            logger.error(f"Notion integration error: {str(e)}")
+
         # Save lead to database
         lead_id = str(uuid.uuid4())
+        specs_token = str(uuid.uuid4())
+        specs_url = f"{FRONTEND_URL}/specs/{specs_token}"
         lead_doc = {
             "id": lead_id,
             "session_id": request.session_id,
@@ -442,56 +594,158 @@ async def generate_specs(request: GenerateSpecsRequest):
             "language": language,
             "conversation": session_data["messages"],
             "specs_document": specs_document,
+            "specs_token": specs_token,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        specs_data = {
+            "specs_document": specs_document,
+            "name": request.contact.name,
+            "company": request.contact.company,
+            "language": language,
             "created_at": datetime.now(timezone.utc).isoformat()
         }
         if USE_FIRESTORE:
-            firestore_db.collection('leads').document(lead_id).set(lead_doc)
-            logger.info(f"Lead saved to Firestore: {lead_id}")
+            firestore_db.collection(LEADS_COLLECTION).document(lead_id).set(lead_doc)
+            firestore_db.collection('specs_tokens').document(specs_token).set(specs_data)
+            logger.info(f"Lead saved to Firestore ({LEADS_COLLECTION}): {lead_id}")
         else:
-            await mongo_db.leads.insert_one(lead_doc)
-            logger.info(f"Lead saved to MongoDB: {lead_id}")
+            specs_store[specs_token] = specs_data
+            logger.info(f"Specs stored in memory with token: {specs_token}")
         
         # Send email with specs
-        email_subject = "Your Project Specifications - Startandgrowth" if language == "en" else "Vos Spécifications de Projet - Startandgrowth"
-        
-        email_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <style>
-                body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
-                .container {{ max-width: 800px; margin: 0 auto; padding: 20px; }}
-                .header {{ background: linear-gradient(135deg, #0774B6, #39ADE3); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }}
-                .content {{ background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }}
-                .specs {{ background: white; padding: 20px; border-radius: 8px; margin-top: 20px; white-space: pre-wrap; }}
-                .footer {{ text-align: center; margin-top: 30px; color: #666; font-size: 14px; }}
-                h1 {{ margin: 0; }}
-                h2 {{ color: #0774B6; }}
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <div class="header">
-                    <h1>{"Project Specifications" if language == "en" else "Spécifications du Projet"}</h1>
-                    <p>{"Generated by Startandgrowth AI Assistant" if language == "en" else "Généré par l'Assistant IA Startandgrowth"}</p>
-                </div>
-                <div class="content">
-                    <p>{"Dear" if language == "en" else "Cher(e)"} {request.contact.name},</p>
-                    <p>{"Thank you for using our AI assistant. Below are your project specifications based on our conversation:" if language == "en" else "Merci d'avoir utilisé notre assistant IA. Voici les spécifications de votre projet basées sur notre conversation:"}</p>
-                    <div class="specs">
-                        {specs_document.replace(chr(10), '<br>')}
-                    </div>
-                    <p style="margin-top: 30px;">{"Our team will review these specifications and contact you shortly to discuss the next steps." if language == "en" else "Notre équipe examinera ces spécifications et vous contactera prochainement pour discuter des prochaines étapes."}</p>
-                    <p>{"Best regards," if language == "en" else "Cordialement,"}<br><strong>The Startandgrowth Team</strong></p>
-                </div>
-                <div class="footer">
-                    <p>© 2025 Startandgrowth - AI Consulting & Software Engineering</p>
-                    <p><a href="https://startandgrowth.com">startandgrowth.com</a></p>
-                </div>
-            </div>
-        </body>
-        </html>
-        """
+        email_subject = (
+            f"Your Project Proposal – {request.contact.company or request.contact.name} | Startandgrowth"
+            if language == "en" else
+            f"Votre Cahier de Charges – {request.contact.company or request.contact.name} | Startandgrowth"
+        )
+
+        def specs_to_html(text: str) -> str:
+            """Convert plain-text specs (markdown-like) to HTML."""
+            import re
+            lines = text.split('\n')
+            html_parts = []
+            in_list = False
+            for line in lines:
+                stripped = line.strip()
+                if not stripped:
+                    if in_list:
+                        html_parts.append('</ul>')
+                        in_list = False
+                    html_parts.append('<br>')
+                    continue
+                # Headings
+                if stripped.startswith('### '):
+                    if in_list: html_parts.append('</ul>'); in_list = False
+                    html_parts.append(f'<h3 style="color:#0774B6;font-size:15px;margin:20px 0 6px 0;">{stripped[4:]}</h3>')
+                elif stripped.startswith('## '):
+                    if in_list: html_parts.append('</ul>'); in_list = False
+                    html_parts.append(f'<h2 style="color:#0774B6;font-size:17px;font-weight:700;margin:28px 0 8px 0;padding-bottom:6px;border-bottom:2px solid #e8f4fd;">{stripped[3:]}</h2>')
+                elif stripped.startswith('# '):
+                    if in_list: html_parts.append('</ul>'); in_list = False
+                    html_parts.append(f'<h1 style="color:#0774B6;font-size:20px;font-weight:700;margin:28px 0 8px 0;">{stripped[2:]}</h1>')
+                # Bullet points
+                elif stripped.startswith('- ') or stripped.startswith('* '):
+                    if not in_list:
+                        html_parts.append('<ul style="margin:8px 0;padding-left:20px;">')
+                        in_list = True
+                    content = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', stripped[2:])
+                    html_parts.append(f'<li style="margin:4px 0;color:#444;">{content}</li>')
+                # Regular paragraph
+                else:
+                    if in_list: html_parts.append('</ul>'); in_list = False
+                    content = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', stripped)
+                    html_parts.append(f'<p style="margin:8px 0;color:#444;line-height:1.7;">{content}</p>')
+            if in_list:
+                html_parts.append('</ul>')
+            return '\n'.join(html_parts)
+
+        specs_html = specs_to_html(specs_document)
+        date_str = datetime.now(timezone.utc).strftime('%B %d, %Y') if language == 'en' else datetime.now(timezone.utc).strftime('%d %B %Y')
+
+        email_html = f"""<!DOCTYPE html>
+<html lang="{'en' if language == 'en' else 'fr'}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{email_subject}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f0f4f8;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f0f4f8;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;">
+
+        <!-- Header -->
+        <tr><td style="background:linear-gradient(135deg,#0774B6 0%,#39ADE3 100%);border-radius:12px 12px 0 0;padding:40px 48px;text-align:center;">
+          <p style="margin:0 0 16px 0;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.75);">Startandgrowth · AI Consulting &amp; Software Engineering</p>
+          <h1 style="margin:0 0 8px 0;font-size:28px;font-weight:800;color:#ffffff;line-height:1.2;">
+            {"Project Proposal" if language == "en" else "Proposition de Projet"}
+          </h1>
+          <p style="margin:0;font-size:14px;color:rgba(255,255,255,0.8);">{date_str}</p>
+        </td></tr>
+
+        <!-- Divider accent -->
+        <tr><td style="height:4px;background:linear-gradient(90deg,#00FFD1,#39ADE3);"></td></tr>
+
+        <!-- Body -->
+        <tr><td style="background:#ffffff;padding:48px;">
+
+          <p style="margin:0 0 24px 0;font-size:16px;color:#1a1a2e;line-height:1.6;">
+            {"Dear" if language == "en" else "Cher(e)"} <strong>{request.contact.name}</strong>,
+          </p>
+
+          <p style="margin:0 0 32px 0;font-size:15px;color:#444;line-height:1.7;">
+            {"Following our discussion, please find below the project proposal we have prepared for you. This document outlines the scope, objectives, and key deliverables based on your requirements." if language == "en" else "Suite à notre échange, veuillez trouver ci-dessous la proposition de projet que nous avons préparée pour vous. Ce document présente le périmètre, les objectifs et les livrables clés basés sur vos besoins."}
+          </p>
+
+          <!-- Specs document -->
+          <div style="background:#f8fbff;border:1px solid #e0edf7;border-left:4px solid #0774B6;border-radius:8px;padding:32px 36px;margin-bottom:36px;">
+            {specs_html}
+          </div>
+
+          <!-- CTA -->
+          <div style="background:#f0f9ff;border-radius:8px;padding:24px 32px;margin-bottom:36px;text-align:center;">
+            <p style="margin:0 0 16px 0;font-size:15px;color:#444;line-height:1.6;">
+              {"You can reach to discuss the next steps and get answer to any questions you may have." if language == "en" else "Vous pouver nous contacter pour discuter des prochaines étapes de votre projet."}
+            </p>
+            <a href="https://calendar.app.google/gxFMbemWhmKeWnCD6" style="display:inline-block;background:linear-gradient(135deg,#0774B6,#39ADE3);color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 32px;border-radius:6px;letter-spacing:0.5px;">
+              {"Visit our website" if language == "en" else "Visiter notre site"}
+            </a>
+          </div>
+
+          <!-- Public specs link -->
+          <div style="background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:16px 24px;margin-bottom:36px;text-align:center;">
+            <p style="margin:0 0 12px 0;font-size:13px;color:#666;">{"View the full document online:" if language == "en" else "Consulter le document complet en ligne :"}</p>
+            <a href="{specs_url}" style="display:inline-block;background:#fff;border:2px solid #0774B6;color:#0774B6;text-decoration:none;font-weight:700;font-size:14px;padding:12px 28px;border-radius:6px;">{"Open document" if language == "en" else "Ouvrir le document"} →</a>
+          </div>
+
+          <!-- Signature -->
+          <table cellpadding="0" cellspacing="0" style="border-top:1px solid #eee;padding-top:28px;width:100%;">
+            <tr>
+              <td>
+                <p style="margin:0 0 4px 0;font-size:15px;font-weight:700;color:#1a1a2e;">Aros FONTON</p>
+                <p style="margin:0 0 2px 0;font-size:13px;color:#0774B6;font-weight:600;">Software Engineer|AI Consultant</p>
+                <p style="margin:0;font-size:13px;color:#888;">arosf@startandgrowth.net</p>
+              </td>
+            </tr>
+          </table>
+
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="background:#1a1a2e;border-radius:0 0 12px 12px;padding:24px 48px;text-align:center;">
+          <p style="margin:0 0 8px 0;font-size:13px;color:rgba(255,255,255,0.5);">
+            © 2022 Startandgrowth · AI Consulting &amp; Software Engineering
+          </p>
+          <p style="margin:0;font-size:13px;">
+            <a href="https://startandgrowth.net" style="color:#39ADE3;text-decoration:none;">startandgrowth.net</a>
+          </p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>"""
         
         # Send email
         email_sent = False
@@ -501,6 +755,7 @@ async def generate_specs(request: GenerateSpecsRequest):
                 params = {
                     "from": SENDER_EMAIL,
                     "to": [request.contact.email],
+                    "cc": ["arosf@startandgrowth.net"],
                     "subject": email_subject,
                     "html": email_html
                 }
@@ -518,6 +773,8 @@ async def generate_specs(request: GenerateSpecsRequest):
         return {
             "success": True,
             "specs_document": specs_document,
+            "specs_url": specs_url,
+            "notion_page_url": notion_page_url,
             "email_sent": email_sent,
             "email_id": email_id,
             "message": "Specifications generated successfully!" if language == "en" else "Spécifications générées avec succès!"
@@ -535,13 +792,27 @@ async def get_leads():
     leads = []
     if USE_FIRESTORE:
         from firebase_admin import firestore as fs
-        docs = firestore_db.collection('leads').order_by('created_at', direction=fs.Query.DESCENDING).stream()
+        docs = firestore_db.collection(LEADS_COLLECTION).order_by('created_at', direction=fs.Query.DESCENDING).stream()
         for doc in docs:
             leads.append(doc.to_dict())
     else:
         docs = await mongo_db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
         leads = docs
     return {"leads": leads, "count": len(leads)}
+
+
+@api_router.get("/specs/{token}")
+async def get_specs(token: str):
+    """Public endpoint to retrieve a specs document by token"""
+    if USE_FIRESTORE:
+        doc = firestore_db.collection('specs_tokens').document(token).get()
+        if not doc.exists:
+            raise HTTPException(status_code=404, detail="Document not found")
+        return doc.to_dict()
+    # Fallback: in-memory store for local dev
+    if token in specs_store:
+        return specs_store[token]
+    raise HTTPException(status_code=404, detail="Document not found")
 
 
 # Include the router in the main app

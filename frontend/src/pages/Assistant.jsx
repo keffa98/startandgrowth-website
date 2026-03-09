@@ -23,7 +23,7 @@ const Assistant = () => {
   const [showContactForm, setShowContactForm] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [specsGenerated, setSpecsGenerated] = useState(false);
-  const [specsDocument, setSpecsDocument] = useState('');
+  const [notionPageUrl, setNotionPageUrl] = useState('');
   const [contactInfo, setContactInfo] = useState({
     name: '',
     email: '',
@@ -51,7 +51,7 @@ const Assistant = () => {
     setMessages([]);
     setShowContactForm(false);
     setSpecsGenerated(false);
-    setSpecsDocument('');
+    setNotionPageUrl('');
     
     try {
       const response = await fetch(`${API_URL}/api/assistant/start?language=${language}`, {
@@ -118,7 +118,7 @@ const Assistant = () => {
       const data = await response.json();
       
       if (data.success) {
-        setSpecsDocument(data.specs_document);
+        setNotionPageUrl(data.specs_url || '');
         setSpecsGenerated(true);
         setShowContactForm(false);
         setMessages(prev => [...prev, { 
@@ -378,8 +378,8 @@ const Assistant = () => {
               </div>
             )}
 
-            {/* Specs Document Display */}
-            {specsGenerated && specsDocument && (
+            {/* Specs Generated */}
+            {specsGenerated && (
               <div className={`p-4 sm:p-6 border-t ${isDark ? 'border-white/10 bg-white/5' : 'border-slate-200 bg-slate-50'}`}>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
@@ -395,9 +395,28 @@ const Assistant = () => {
                     {t.newConversation}
                   </Button>
                 </div>
-                <div className={`max-h-[300px] overflow-y-auto p-4 rounded-xl ${isDark ? 'bg-black/20' : 'bg-white'} text-sm whitespace-pre-wrap ${isDark ? 'text-white/80' : 'text-slate-700'}`}>
-                  {specsDocument}
-                </div>
+                {notionPageUrl ? (
+                  <a
+                    href={notionPageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-3 p-4 rounded-xl border transition-colors ${
+                      isDark
+                        ? 'bg-white/5 border-white/10 hover:bg-white/10 text-[#00FFD1]'
+                        : 'bg-white border-slate-200 hover:bg-slate-50 text-[#0774B6]'
+                    }`}
+                    data-testid="notion-page-link"
+                  >
+                    <FileText className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-sm font-semibold underline underline-offset-2">
+                      {language === 'fr' ? 'Consulter le Cahier des Charges' : 'View the Project Specifications'}
+                    </span>
+                  </a>
+                ) : (
+                  <p className={`text-sm ${isDark ? 'text-white/60' : 'text-slate-500'}`}>
+                    {language === 'fr' ? 'Document envoyé par email.' : 'Document sent by email.'}
+                  </p>
+                )}
               </div>
             )}
 

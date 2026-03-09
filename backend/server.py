@@ -69,7 +69,7 @@ db = init_database()
 
 # Resend setup
 resend.api_key = os.environ.get('RESEND_API_KEY', '')
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'agent@startandgrowth.net')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'Startandgrowth Agent <agent@startandgrowth.net>')
 
 # Environment
 APP_ENV = os.environ.get('APP_ENV', 'development')

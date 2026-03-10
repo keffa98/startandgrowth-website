@@ -86,3 +86,4 @@ android-sdk/
 # Firebase credentials (SENSITIVE - never commit!)
 firebase-service-account.json
 *-service-account.json
+frontend/.firebase/hosting.YnVpbGQ.cache
